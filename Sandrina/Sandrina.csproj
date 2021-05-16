@@ -106,8 +106,8 @@
     <Resource Include="Images\DefaultSandrinaInPolinaClothes.png" />
     <Resource Include="Images\Catto.png" />
     <Resource Include="Images\DefaultSandrina.png" />
-    <Resource Include="Images\MirrorLeft.png" />
-    <Resource Include="Images\MirrorRight.png" />
+    <Resource Include="Images\Left.png" />
+    <Resource Include="Images\Right.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Doggo.png" />

@@ -10,7 +10,7 @@
 		Width="856">
 	<Window.Resources>
 		<Color x:Key="MyGreen">#FFA3DA95</Color>
-		<Color x:Key="MyBackgroundColor">#FF3E2A35</Color>
+		<Color x:Key="MyFontColor">#FF3E2A35</Color>
 		<Color x:Key="LightBlue">#FFC6E2E9</Color>
 		<Color x:Key="MidBlue">#FF82A0B2</Color>
 		<Color x:Key="DarkBlue">#FF223444</Color>
@@ -112,7 +112,7 @@
 							 Width="216"
 							 Background="#FF3E2A35" />
 					<Image Margin="519,69,301,304.6"
-						   Source="Images/MirrorLeft.png"
+						   Source="Images/Left.png"
 						   Stretch="Fill" />
 					<Label Content="Гардероб"
 						   HorizontalAlignment="Left"
@@ -142,7 +142,7 @@
 							   Margin="114,7,0,0"
 							   VerticalAlignment="Top"
 							   Width="236"
-							   Source="Images/DefaultSandrinaInSashaClothes.png.png"
+							   Source="Images/DefaultSandrinaInSashaClothes.png"
 							   Visibility="Hidden" />
 						<Image x:Name="CatImage"
 							   HorizontalAlignment="Left"
@@ -175,7 +175,7 @@
 						   Margin="765,69,0,0"
 						   VerticalAlignment="Top"
 						   Width="33"
-						   Source="Images/MirrorRight.png" />
+						   Source="Images/Right.png" />
 
 				</Grid>
 			</TabItem>

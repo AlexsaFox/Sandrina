@@ -56,8 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Start.xaml.cs">
-      <DependentUpon>Start.xaml</DependentUpon>
+    <Compile Include="UserElements\Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserElements\HelloScreen.xaml.cs">
+      <DependentUpon>HelloScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserElements\Instructions.xaml.cs">
+      <DependentUpon>Instructions.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,7 +77,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Start.xaml">
+    <Page Include="UserElements\Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserElements\HelloScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserElements\Instructions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Doggo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Temporary.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

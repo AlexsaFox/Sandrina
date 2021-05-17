@@ -4,50 +4,79 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Sandrina"
+		xmlns:custom="clr-namespace:Sandrina.UserElements"
 		mc:Ignorable="d"
 		Title="MainWindow"
-		Height="539.6"
+		WindowStyle="None"
+		ResizeMode="CanResizeWithGrip"
+		AllowsTransparency="True"
+		Height="550"
 		Width="800">
 
-	<Grid Background="#FFA3C3D6">
-		<TextBlock HorizontalAlignment="Left"
-				   Margin="193,414,0,0"
-				   TextWrapping="Wrap"
-				   Text="Made by Paulina Nikolaeva and Alexandra Agaltsova❤️"
-				   VerticalAlignment="Top"
-				   Height="44"
-				   Width="405"
-				   FontSize="16"
-				   TextDecorations="{x:Null}"
-				   FontStyle="Italic" />
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30" />
+			<RowDefinition Height="1*" />
+		</Grid.RowDefinitions>
 
-		<Label Content="なぜこれを翻訳したのですか"
-			   HorizontalAlignment="Left"
-			   Height="65"
-			   Margin="187,34,0,0"
-			   VerticalAlignment="Top"
-			   Width="411"
-			   FontSize="36" />
-		<Label Content="One day of SaPo`s life"
-			   HorizontalAlignment="Left"
-			   Height="52"
-			   Margin="267,142,0,0"
-			   VerticalAlignment="Top"
-			   Width="222"
-			   FontSize="20"
-			   FontStyle="Italic" />
-		<Button x:Name="Go"
-				Content="Start"
-				Margin="219,310,262.6,0"
-				FontSize="24"
-				Background="#FF3E5D7A"
-				Foreground="#FFC6E2E9"
-				BorderBrush="#FFC6E2E9"
-				FontStyle="Italic"
-				Click="Go_Click"
-				Height="57"
-				VerticalAlignment="Top" />
+		<Grid x:Name="TopBar"
+			  Background="#3E5D7A"
+			  MouseDown="DragWindow">
 
+			<Button x:Name="ExitButton"
+					Content="✖"
+					Width="24"
+					Height="24"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Right"
+					Margin="3"
+					Foreground="#DDDDDD"
+					Background="Transparent"
+					BorderThickness="0"
+					Click="CloseWindow">
+
+				<Button.Template>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border"
+								CornerRadius="6"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{TemplateBinding Background}"
+								SnapsToDevicePixels="true">
+							<ContentPresenter x:Name="contentPresenter"
+											  Focusable="False"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  RecognizesAccessKey="True"
+											  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border"
+										Property="Background"
+										Value="#55dddddd" />
+								<Setter Property="Cursor"
+										Value="Hand" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+		</Grid>
+
+		<Grid x:Name="MainGrid"
+			  Grid.Row="1">
+			
+			<custom:HelloScreen x:Name="HelloScreenPage" 
+								Visibility="Visible" />
+			
+			<custom:Instructions x:Name="InstructionsPage"
+								 Visibility="Hidden" />
+			
+			<custom:Game x:Name="GamePage"
+						 Visibility="Hidden" />
+		</Grid>
 	</Grid>
 </Window>
 

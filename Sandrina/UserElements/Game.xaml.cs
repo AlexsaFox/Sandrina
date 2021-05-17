@@ -10,40 +10,44 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace Sandrina {
-    public partial class Start : Window {
-        DispatcherTimer TimerTemp = new DispatcherTimer();
-        DispatcherTimer TimerFun = new DispatcherTimer();
-        DispatcherTimer TimerHP = new DispatcherTimer();
-        int MinusCold = 1;
-        int MinusFun = 1;
-        int CangesHP = 1;
-        bool CheckHeadphone = true;
-        Random r = new Random();
-        public Start() {
+namespace Sandrina.UserElements {
+	public partial class Game : UserControl {
+		public Game() {
             InitializeComponent();
-            // Таймер температуры
-            TimerTemp.Interval = new TimeSpan(0, 0, 0, 10, 0);
+			#region Инициализация таймеров
+			// Таймер температуры
+			TimerTemp.Interval = new TimeSpan(0, 0, 0, 10, 0);
             TimerTemp.IsEnabled = true;
             TimerTemp.Tick += TempChange;
+
             // Таймер настроения
             TimerFun.Interval = new TimeSpan(0, 0, 0, 1, 0);
             TimerFun.IsEnabled = true;
             TimerFun.Tick += FunChange;
+
             // Таймер здоровья
             TimerHP.Interval = new TimeSpan(0, 0, 0, 0, 50);
             TimerHP.IsEnabled = true;
             TimerHP.Tick += HPChange;
+            #endregion
         }
+        #region Глобальные переменные
+        DispatcherTimer TimerTemp = new DispatcherTimer();
+        DispatcherTimer TimerFun = new DispatcherTimer();
+        DispatcherTimer TimerHP = new DispatcherTimer();
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            Instruction.Visibility = Visibility.Hidden;
-        }
+        int MinusCold = 1;
+        int MinusFun = 1;
+        int CangesHP = 1;
 
-        // Функции для таймеров
+        bool CheckHeadphone = true;
+        Random r = new Random();
+        #endregion
+        #region Функции для таймеров
         // Функция температуры
         void TempChange(object sender, EventArgs e) {
             if (plaid.IsChecked == false) {
@@ -55,10 +59,12 @@ namespace Sandrina {
             }
 
         }
+
         // Функция настроения
         void FunChange(object sender, EventArgs e) {
             Fun.Value -= MinusFun;
         }
+
         // Функция здоровья
         void HPChange(object sender, EventArgs e) {
             if (Cold.Value <= 30 || Cold.Value >= 80 || Fun.Value <= 40) {
@@ -69,10 +75,8 @@ namespace Sandrina {
                 ChangeHP();
             }
         }
-
-
-        // Изменение цвета строки температуры
-
+        #endregion
+        #region Изменение цвета показателей
         void ChangeTemp() {
             // TODO Добавить читаемости
             if (Cold.Value == 10) {
@@ -108,9 +112,8 @@ namespace Sandrina {
             }
 
         }
-
-        // Описание кнопок (фанфики, музыка, пироженки, кофе)
-
+        #endregion
+        #region Описание кнопок (фанфики, музыка, пироженки, кофе)
         private void Fanfiks_Click(object sender, RoutedEventArgs e) {
             Fun.Value += r.Next(-10, 20);
         }
@@ -140,8 +143,8 @@ namespace Sandrina {
             }
 
         }
-
-        // Описание смены одежды
+        #endregion
+        #region Описание смены одежды
         private void Get_dressed_Click(object sender, RoutedEventArgs e) {
             if (Polly.IsChecked == true) {
                 CostumePolly.Visibility = Visibility.Visible;
@@ -174,21 +177,10 @@ namespace Sandrina {
             Dog.IsChecked = false;
         }
 
-        private void Cat_Checked(object sender, RoutedEventArgs e) {
-            CatImage.Visibility = Visibility.Visible;
-        }
-
-        private void Cat_Unchecked(object sender, RoutedEventArgs e) {
-            CatImage.Visibility = Visibility.Hidden;
-        }
-
-        private void Dog_Checked(object sender, RoutedEventArgs e) {
-            DogImage.Visibility = Visibility.Visible;
-        }
-
-        private void Dog_Unchecked(object sender, RoutedEventArgs e) {
-            DogImage.Visibility = Visibility.Hidden;
-        }
+        private void Cat_Checked(object sender, RoutedEventArgs e) { CatImage.Visibility = Visibility.Visible; }
+        private void Cat_Unchecked(object sender, RoutedEventArgs e) { CatImage.Visibility = Visibility.Hidden; }
+        private void Dog_Checked(object sender, RoutedEventArgs e) { DogImage.Visibility = Visibility.Visible; }
+        private void Dog_Unchecked(object sender, RoutedEventArgs e) { DogImage.Visibility = Visibility.Hidden; }
 
         private void Polly_Checked(object sender, RoutedEventArgs e) {
             Image Photo = new Image();
@@ -205,5 +197,6 @@ namespace Sandrina {
             // TODO: Photo1.Source = new BitmapImage(new Uri("D:\\МШП\\Проекты\\По шарпу\\Картинки\\Фон Одежда Саши.jpeg"));
             Box.Items.Add(Photo1);
         }
+        #endregion
     }
 }

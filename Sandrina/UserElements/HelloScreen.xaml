@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Sandrina.UserElements.HelloScreen"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:Sandrina.UserElements"
+			 mc:Ignorable="d">
+
+	<Grid Background="#A3C3D6">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="200" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="100" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="70" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
+		<Label Content="Made by Paulina Nikolaeva and Alexandra Agaltsova❤️"
+			   FontSize="16"
+			   FontStyle="Italic"
+			   Grid.Row="4"
+			   VerticalContentAlignment="Center"
+			   HorizontalContentAlignment="Center"
+			   Grid.ColumnSpan="3" />
+		<Label Content="なぜこれを翻訳したのですか"
+			   Margin="0"
+			   FontSize="36"
+			   VerticalContentAlignment="Center"
+			   HorizontalContentAlignment="Center"
+			   Grid.ColumnSpan="3" />
+		<Label Content="One day of SaPo`s life"
+			   Margin="0"
+			   VerticalContentAlignment="Center"
+			   HorizontalContentAlignment="Center"
+			   FontSize="20"
+			   FontStyle="Italic"
+			   Grid.Row="1"
+			   Grid.ColumnSpan="3" />
+		<Button x:Name="Go"
+				Content="Start"
+				Margin="0,10"
+				FontSize="24"
+				Background="#3E5D7A"
+				Foreground="#C6E2E9"
+				BorderBrush="#C6E2E9"
+				FontStyle="Italic"
+				Click="GotoInstructions"
+				Grid.Row="3"
+				Grid.Column="1" />
+		<Image Margin="200,10"
+			   Grid.Row="2"
+			   Source="/Sandrina;component/Images/Temporary.png"
+			   Stretch="Fill"
+			   StretchDirection="DownOnly"
+			   Grid.ColumnSpan="3"/>
+	</Grid>
+</UserControl>

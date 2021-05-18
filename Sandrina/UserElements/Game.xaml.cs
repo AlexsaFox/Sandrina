@@ -30,7 +30,7 @@ namespace Sandrina.UserElements {
             TimerFun.Tick += FunChange;
 
             // Таймер здоровья
-            TimerHP.Interval = new TimeSpan(0, 0, 0, 0, 50);
+            TimerHP.Interval = new TimeSpan(0, 0, 0, 0, 200);
             TimerHP.IsEnabled = true;
             TimerHP.Tick += HPChange;
             #endregion
@@ -57,7 +57,6 @@ namespace Sandrina.UserElements {
                 Cold.Value += MinusCold;
                 ChangeTemp();
             }
-
         }
 
         // Функция настроения
@@ -79,19 +78,19 @@ namespace Sandrina.UserElements {
         #region Изменение цвета показателей
         void ChangeTemp() {
             // TODO Добавить читаемости
-            if (Cold.Value == 10) {
+            if (Cold.Value <= 20) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(62, 93, 122));
-            } else if (Cold.Value == 20) {
+            } else if (Cold.Value <= 30) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(130, 160, 178));
-            } else if (Cold.Value == 30) {
+            } else if (Cold.Value <= 40) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(198, 226, 233));
-            } else if (Cold.Value == 50) {
+            } else if (Cold.Value <= 70) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(163, 218, 149));
-            } else if (Cold.Value == 70) {
+            } else if (Cold.Value <= 50) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(255, 202, 175));
-            } else if (Cold.Value == 80) {
+            } else if (Cold.Value <= 90) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(241, 156, 133));
-            } else if (Cold.Value == 90) {
+            } else if (Cold.Value <= 100) {
                 Cold.Foreground = new SolidColorBrush(Color.FromRgb(226, 109, 90));
             }
         }
@@ -99,18 +98,17 @@ namespace Sandrina.UserElements {
         void ChangeHP() {
             if (HP.Value == 0) {
                 // TODO ???
-            } else if (HP.Value == 10) {
+            } else if (HP.Value <= 20) {
                 HP.Foreground = new SolidColorBrush(Color.FromRgb(226, 109, 90));
-            } else if (HP.Value == 20) {
+            } else if (HP.Value <= 30) {
                 HP.Foreground = new SolidColorBrush(Color.FromRgb(241, 156, 133));
-            } else if (HP.Value == 30) {
+            } else if (HP.Value <= 50) {
                 HP.Foreground = new SolidColorBrush(Color.FromRgb(255, 202, 175));
-            } else if (HP.Value == 50) {
+            } else if (HP.Value <= 70) {
                 HP.Foreground = new SolidColorBrush(Color.FromRgb(209, 210, 162));
-            } else if (Cold.Value == 70) {
+            } else if (HP.Value <= 100) {
                 HP.Foreground = new SolidColorBrush(Color.FromRgb(163, 218, 149));
             }
-
         }
         #endregion
         #region Описание кнопок (фанфики, музыка, пироженки, кофе)

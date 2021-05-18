@@ -57,6 +57,6 @@ namespace Sandrina {
 		private void CloseWindow(object sender, RoutedEventArgs e) {
             Close();
 		}
-        #endregion
-    }
+		#endregion
+	}
 }

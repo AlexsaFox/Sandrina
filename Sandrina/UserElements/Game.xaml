@@ -1,10 +1,9 @@
 ﻿<UserControl x:Class="Sandrina.UserElements.Game"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:local="clr-namespace:Sandrina.UserElements"
-			 mc:Ignorable="d">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
 
 	<UserControl.Resources>
 		<SolidColorBrush x:Key="MyGreen"
@@ -38,7 +37,7 @@
 					Background="{DynamicResource MyPeach}"
 					Margin="0">
 			<TabItem x:Name="Wardrob"
-					 Header="Dress up"
+					 Header="Гардероб"
 					 BorderBrush="#FFFFCAAF"
 					 Background="#FFFFCAAF"
 					 FontSize="18"
@@ -96,7 +95,6 @@
 								 Content="1 аутфит"
 								 GroupName="Costumes"
 								 FontSize="20"
-								 Checked="Polly_Checked"
 								 Grid.Column="1"
 								 Grid.Row="2"
 								 VerticalContentAlignment="Center" />
@@ -104,7 +102,6 @@
 								 Content="2 аутфит"
 								 GroupName="Costumes"
 								 FontSize="20"
-								 Checked="Alex_Checked"
 								 Grid.Column="3"
 								 Grid.Row="2"
 								 VerticalContentAlignment="Center" />
@@ -112,7 +109,6 @@
 							Content="Примерить"
 							Margin="50,20"
 							Background="#FFC86B65"
-							Click="Get_dressed_Click"
 							FontFamily="Segoe Print"
 							Grid.Column="1"
 							Grid.Row="3"
@@ -121,8 +117,6 @@
 							  Content="Животное"
 							  Margin="50,0"
 							  FontSize="24"
-							  Checked="Pets_Checked"
-							  Unchecked="Pets_Unchecked"
 							  Grid.Column="1"
 							  Grid.ColumnSpan="3"
 							  Grid.Row="5"
@@ -133,8 +127,6 @@
 								 FontSize="20"
 								 GroupName="Pet"
 								 IsEnabled="False"
-								 Checked="Cat_Checked"
-								 Unchecked="Cat_Unchecked"
 								 Grid.Column="3"
 								 Grid.Row="6"
 								 VerticalContentAlignment="Center" />
@@ -144,8 +136,6 @@
 								 FontSize="20"
 								 GroupName="Pet"
 								 IsEnabled="False"
-								 Checked="Dog_Checked"
-								 Unchecked="Dog_Unchecked"
 								 Grid.Column="1"
 								 Grid.Row="6"
 								 VerticalContentAlignment="Center" />
@@ -161,7 +151,7 @@
 							   Stretch="Uniform"
 							   HorizontalAlignment="Right"
 							   Source="/Sandrina;component/Images/DefaultSandrina.png"
-							   Grid.Column="1"/>
+							   Grid.Column="1" />
 						<Image x:Name="AlexCostume"
 							   SnapsToDevicePixels="True"
 							   Stretch="Uniform"
@@ -180,7 +170,7 @@
 							   SnapsToDevicePixels="True"
 							   Stretch="Uniform"
 							   Source="/Sandrina;component/Images/Catto.png"
-							   Visibility="Visible"/>
+							   Visibility="Visible" />
 						<Image x:Name="DogImage"
 							   VerticalAlignment="Bottom"
 							   Margin="0,0,-10,0"
@@ -194,166 +184,142 @@
 				</Grid>
 			</TabItem>
 			<TabItem x:Name="Main"
-					 Header="Game play"
+					 Header="Игра"
 					 FontSize="18"
 					 Background="{DynamicResource LightBlue}"
 					 Foreground="{DynamicResource MyFontColor}">
-				<Grid Margin="0,-1,1.6,-0.2"
-					  Background="{DynamicResource MyMint}">
-					<Grid Margin="10,390,0,10"
-						  HorizontalAlignment="Left"
-						  Width="382">
-						<ProgressBar x:Name="HP"
-									 HorizontalAlignment="Left"
-									 Height="32"
-									 Margin="101,27,0,0"
-									 VerticalAlignment="Top"
-									 Width="253"
-									 Value="100"
-									 BorderBrush="{DynamicResource MyDarkGreen}"
-									 Foreground="{DynamicResource MyLightGreen}">
-						</ProgressBar>
-						<ProgressBar x:Name="Cold"
-									 HorizontalAlignment="Left"
-									 Height="30"
-									 Margin="101,100,0,0"
-									 VerticalAlignment="Top"
-									 Width="253"
-									 Value="50"
-									 BorderBrush="{DynamicResource MyDarkGreen}"
-									 Foreground="{DynamicResource MyLightGreen}">
-						</ProgressBar>
-						<Label x:Name="TextHP"
-							   Content="HP"
-							   HorizontalAlignment="Left"
-							   Height="32"
-							   Margin="29,27,0,0"
-							   VerticalAlignment="Top"
-							   Width="41"
-							   FontSize="18"
-							   Padding="0"
-							   Foreground="{DynamicResource MyFontColor}">
-						</Label>
-						<Label x:Name="TextFun"
-							   Content="Fun"
-							   HorizontalAlignment="Left"
-							   Height="32"
-							   Margin="29,63,0,0"
-							   VerticalAlignment="Top"
-							   Width="53"
-							   FontSize="18"
-							   Padding="0"
-							   Foreground="{DynamicResource MyFontColor}">
-						</Label>
-						<Label x:Name="TextCold"
-							   Content="Temp"
-							   HorizontalAlignment="Left"
-							   Height="32"
-							   Margin="29,100,0,0"
-							   VerticalAlignment="Top"
-							   Width="56"
-							   Padding="0"
-							   FontSize="18"
-							   Foreground="{DynamicResource MyFontColor}">
-						</Label>
-						<ProgressBar x:Name="Fun"
-									 HorizontalAlignment="Left"
-									 Height="32"
-									 Margin="101,63,0,0"
-									 VerticalAlignment="Top"
-									 Width="253"
-									 Value="50"
-									 BorderBrush="{DynamicResource MyDarkGreen}"
-									 Foreground="{DynamicResource MyLightGreen}">
-						</ProgressBar>
-					</Grid>
+				<Grid Background="{DynamicResource MyMint}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="5*" />
+						<ColumnDefinition Width="3*" />
+						<ColumnDefinition Width="70" />
+					</Grid.ColumnDefinitions>
 
-					<CheckBox x:Name="plaid"
-							  Content="Плед"
-							  HorizontalAlignment="Left"
-							  Height="25"
-							  Margin="490,229,0,0"
-							  VerticalAlignment="Top"
-							  Width="131"
-							  Padding="2,-10,0,0"
-							  ScrollViewer.CanContentScroll="True"
-							  FontSize="24"
-							  Foreground="{DynamicResource DarkBlue}">
-					</CheckBox>
-					<Label x:Name="Text"
-						   Content="Взаимодействие"
-						   Height="47"
-						   Margin="535,10,96,0"
-						   VerticalAlignment="Top"
-						   FontSize="24"
-						   Foreground="{DynamicResource DarkBlue}">
-					</Label>
-					<Button x:Name="Fanfiks"
-							Content="Фанфики"
-							HorizontalAlignment="Left"
-							Height="43"
-							Margin="490,84,0,0"
-							VerticalAlignment="Top"
-							Width="131"
-							FontSize="24"
-							Click="Fanfiks_Click"
-							Foreground="{DynamicResource DarkBlue}"
-							BorderBrush="{DynamicResource MidBlue}"
-							Background="{DynamicResource LightBlue}">
-					</Button>
-					<Button x:Name="Music"
-							Content="Музыка"
-							HorizontalAlignment="Left"
-							Height="43"
-							Margin="655,84,0,0"
-							VerticalAlignment="Top"
-							Width="131"
-							FontSize="24"
-							Click="Music_Click"
-							IsEnabled="False"
-							Foreground="{DynamicResource DarkBlue}"
-							BorderBrush="{DynamicResource MidBlue}"
-							Background="{DynamicResource LightBlue}">
-					</Button>
-					<Button x:Name="Cake"
-							Content="Тортики"
-							HorizontalAlignment="Left"
-							Height="43"
-							Margin="490,158,0,0"
-							VerticalAlignment="Top"
-							Width="131"
-							FontSize="24"
-							Background="#FFC6E2E9"
-							Click="Cake_Click"
-							Foreground="{DynamicResource DarkBlue}"
-							BorderBrush="{DynamicResource MidBlue}">
-					</Button>
-					<Button x:Name="Coffe"
-							Content="Кофе"
-							HorizontalAlignment="Left"
-							Height="43"
-							Margin="655,158,0,0"
-							VerticalAlignment="Top"
-							Width="131"
-							FontSize="24"
-							Background="#FFC6E2E9"
-							Click="Coffe_Click"
-							Foreground="{DynamicResource DarkBlue}"
-							BorderBrush="{DynamicResource MidBlue}">
-					</Button>
-					<CheckBox x:Name="headphone"
-							  Content="Наушники"
-							  HorizontalAlignment="Left"
-							  Height="25"
-							  Margin="655,229,0,0"
-							  VerticalAlignment="Top"
-							  Width="131"
-							  Padding="2,-10,0,0"
-							  ScrollViewer.CanContentScroll="True"
-							  FontSize="24"
-							  Click="headphone_Click"
-							  Foreground="{DynamicResource DarkBlue}">
-					</CheckBox>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+
+						<Image Source="/Sandrina;component/Images/SUPER-DUPER-MEGA-CUSTOM-ULTRA-NANO-MEGA-OMEGA-AWESOME-HIGH-QUALITY-ULTRA-HD-SUIT.png" />
+						<Grid Grid.Row="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="130" />
+								<ColumnDefinition Width="1*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="1*" />
+								<RowDefinition Height="1*" />
+								<RowDefinition Height="1*" />
+								<RowDefinition Height="1*" />
+								<RowDefinition Height="1*" />
+							</Grid.RowDefinitions>
+
+							<Label Content="Здоровье"
+								   VerticalContentAlignment="Center"
+								   HorizontalContentAlignment="Right" />
+							<ProgressBar Grid.Column="1"
+										 Margin="10"
+										 Value="100" />
+
+							<Label Content="Веселье"
+								   Grid.Row="1"
+								   VerticalContentAlignment="Center"
+								   HorizontalContentAlignment="Right" />
+							<ProgressBar Grid.Column="1"
+										 Margin="10"
+										 Grid.Row="1"
+										 Value="50" />
+
+							<Label Content="Температура"
+								   Grid.Row="2"
+								   VerticalContentAlignment="Center"
+								   HorizontalContentAlignment="Right" />
+							<ProgressBar Grid.Column="1"
+										 Margin="10"
+										 Grid.Row="2"
+										 Value="50" />
+
+							<Label Content="Усталость"
+								   Grid.Row="3"
+								   VerticalContentAlignment="Center"
+								   HorizontalContentAlignment="Right" />
+							<ProgressBar Grid.Column="1"
+										 Margin="10"
+										 Grid.Row="3"
+										 Value="50" />
+
+							<Label Content="Социализация"
+								   Grid.Row="4"
+								   VerticalContentAlignment="Center"
+								   HorizontalContentAlignment="Right" />
+							<ProgressBar Grid.Column="1"
+										 Margin="10"
+										 Grid.Row="4"
+										 Value="49.6" />
+						</Grid>
+					</Grid>
+					<Grid Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*" />
+							<ColumnDefinition Width="1*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+
+						<Button Content="Фанфики"
+								Margin="10" />
+						<Button Content="Сериалы"
+								Margin="10"
+								Grid.Column="1" />
+						<Button Content="Тортики"
+								Margin="10"
+								Grid.Row="1" />
+						<Button Content="Кофе"
+								Margin="10"
+								Grid.Row="1"
+								Grid.Column="1" />
+						<Button Content="Плед"
+								Margin="10"
+								Grid.Row="2" />
+						<Button Content="Мороженое"
+								Margin="10"
+								Grid.Row="2"
+								Grid.Column="1" />
+						<Button Content="Сон"
+								Margin="10"
+								Grid.Row="3" />
+						<Button Content="Танцы"
+								Margin="10"
+								Grid.Row="3"
+								Grid.Column="1" />
+						<Button Content="Соцсети"
+								Margin="10"
+								Grid.Row="4" />
+						<Button Content="Прогулка"
+								Margin="10"
+								Grid.Row="4"
+								Grid.Column="1" />
+
+					</Grid>
+					<Grid Grid.Column="2">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="70"/>
+						</Grid.RowDefinitions>
+
+						<ProgressBar Margin="10"
+									 Orientation="Vertical" />
+						<Label Grid.Row="1"
+							   Content="1"
+							   VerticalContentAlignment="Center"
+							   HorizontalContentAlignment="Center"/>
+					</Grid>
 				</Grid>
 			</TabItem>
 		</TabControl>

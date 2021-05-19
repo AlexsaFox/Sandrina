@@ -130,5 +130,8 @@
   <ItemGroup>
     <Resource Include="Images\Temporary.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SUPER-DUPER-MEGA-CUSTOM-ULTRA-NANO-MEGA-OMEGA-AWESOME-HIGH-QUALITY-ULTRA-HD-SUIT.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

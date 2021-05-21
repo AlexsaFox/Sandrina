@@ -333,10 +333,10 @@ namespace Sandrina.UserElements {
         private void FanFictionsClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
 
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -346,11 +346,11 @@ namespace Sandrina.UserElements {
 
         private void SeriesClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -360,11 +360,11 @@ namespace Sandrina.UserElements {
 
         private void CakesClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -374,11 +374,11 @@ namespace Sandrina.UserElements {
 
         private void CoffeeClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -388,11 +388,11 @@ namespace Sandrina.UserElements {
 
         private void IceCreamClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -402,11 +402,11 @@ namespace Sandrina.UserElements {
 
         private void SleepClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -417,10 +417,10 @@ namespace Sandrina.UserElements {
         private void DanceClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
 
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -430,11 +430,11 @@ namespace Sandrina.UserElements {
 
         private void SocialMediaClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -444,11 +444,11 @@ namespace Sandrina.UserElements {
 
         private void WalkClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -458,11 +458,11 @@ namespace Sandrina.UserElements {
 
         private void MusicClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
-
-            ChangeStats[BarType.Hp] = 0;
-            ChangeStats[BarType.Fun] = 0;
-            ChangeStats[BarType.Temperature] = 0;
-            ChangeStats[BarType.Energy] = 0;
+            
+            ChangeStats[BarType.Hp]            = 0;
+            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Temperature]   = 0;
+            ChangeStats[BarType.Energy]        = 0;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);

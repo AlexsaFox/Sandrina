@@ -78,33 +78,45 @@ namespace Sandrina.UserElements {
 
         #region Глобальные переменные
         // Некоторые временные интервалы			   d     h     m     s    ms
-        TimeSpan GameTickLegth =          new TimeSpan(0,    0,    0,    1,    0);
+        TimeSpan GameTickLegth         =  new TimeSpan(0,    0,    0,    1,    0);
         TimeSpan OneTimeIncreaseLength =  new TimeSpan(0,    0,    0,    0,  150);
-        TimeSpan ColorChangeLength =      new TimeSpan(0,    0,    0,    0,  250);
+        TimeSpan ColorChangeLength     =  new TimeSpan(0,    0,    0,    0,  250);
 
         // Главный таймер
         DispatcherTimer GameTimer = new DispatcherTimer();
 
         #region Переменные изменения состояния
-        double HpPerGameTick = 1;
+        double HpPerGameTick              =     1;
 
-        double FunPerGameTick = -1;
+        double FunPerGameTick             =    -1;
 
-        double TemperaturePerGameTick = 0;
-        double FreezingSpeed = -0.05;
-        const double FreezingMaxSpeed = -3;
-        double WarmingPlaidSpeed = 0.05;
-        const double WarmingPlaidMaxSpeed = 2;
+        double TemperaturePerGameTick     =     0;
+        double FreezingSpeed              = -0.05;
+        const double FreezingMaxSpeed     =    -3;
+        double WarmingPlaidSpeed          =  0.05;
+        const double WarmingPlaidMaxSpeed =     2;
 
-        double EnergyPerGameTick = -1;
+        double EnergyPerGameTick          =    -1;
 
-        double SocializationPerGameTick = -1;
+        double SocializationPerGameTick   =    -1;
         #endregion
         
-        int CurrentLevelNumber = 0;
-        long TicksTillLevelChange = 0;
+        int CurrentLevelNumber            =     0;
+        long TicksTillLevelChange         =     0;
 
         Random rand = new Random();
+        void ResetGlobalVariables() {
+            GameTickLegth         =  new TimeSpan(0,    0,    0,    1,    0);
+            OneTimeIncreaseLength =  new TimeSpan(0,    0,    0,    0,  150);
+            ColorChangeLength     =  new TimeSpan(0,    0,    0,    0,  250);
+            HpPerGameTick              =     1;
+            FunPerGameTick             =    -1;
+            TemperaturePerGameTick     =     0;
+            FreezingSpeed              = -0.05;
+            WarmingPlaidSpeed          =  0.05;
+            CurrentLevelNumber         =     0;
+            TicksTillLevelChange       =     0;
+        }
         #endregion
 
         #region Анимация Progressbar-ов
@@ -530,7 +542,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    60
+                    5
                 ),
                 new AddItemsLevel(		// Описание второго уровня
 					new List<UIElement> {
@@ -542,7 +554,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    120
+                    5
                 ),
                 new AddItemsLevel(		// Описание третьего уровня
 					new List<UIElement> {
@@ -553,7 +565,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    120
+                    5
                 ),
                 new AddItemsLevel(		// Описание четвертого уровня
 					new List<UIElement> {
@@ -564,7 +576,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    120
+                    5
                 ),
                 new IncreaseDifficultyLevel(		// Описание пятого уровня
 					new Dictionary<BarType, double> {
@@ -576,15 +588,14 @@ namespace Sandrina.UserElements {
                     },
                     new TimeSpan(0, 0, 0, 1, 0),
                     GetColor.DarkRed,
-                    120
+                    5
                 ),
             };
         }
 
         void StartNextLevel() {
             if(CurrentLevelNumber == Levels.Count) { // Если игра пройдена
-                MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
-                parentWindow.Close(); // Временно, надо допилить
+                GameTimer.Stop();
             } 
 
             Level CurrentLevel = Levels[CurrentLevelNumber++];

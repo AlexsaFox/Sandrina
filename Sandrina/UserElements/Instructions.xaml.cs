@@ -24,10 +24,10 @@ namespace Sandrina.UserElements {
 		#endregion
 
 		private void GotoGame(object sender, RoutedEventArgs e) {
-			MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
-			parentWindow.GotoGame(this);
-			parentWindow.ChangeTopBarColor(LightYellow);
-			parentWindow.ChangeTopBarButtonsMode(Mode.Dark);
+			MainWindow mainWindow = (Window.GetWindow(this) as MainWindow);
+			mainWindow.GotoGame(this);
+			mainWindow.TopBarElement.ChangeTopBarColor(LightYellow);
+			mainWindow.TopBarElement.ChangeTopBarButtonsMode(Mode.Dark);
 		}
 	}
 }

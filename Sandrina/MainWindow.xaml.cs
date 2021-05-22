@@ -33,30 +33,6 @@ namespace Sandrina {
             hide.Visibility = Visibility.Hidden;
             GamePage.Visibility = Visibility.Visible;
         }
-        public void ChangeTopBarColor(Color color) {
-            TopBar.Background = new SolidColorBrush(color);
-		}
-        public void ChangeTopBarButtonsMode(Mode mode) {
-            switch(mode) {
-                case Mode.Dark:
-                    ExitButton.Foreground = new SolidColorBrush(Color.FromRgb(44, 62, 80));
-                    break;
-
-                case Mode.Light:
-                    ExitButton.Foreground = new SolidColorBrush(Color.FromRgb(221, 221, 221));
-                    break;
-			}
-		}
-		#endregion
-		#region Настройки окна
-		private void DragWindow(object sender, MouseButtonEventArgs e) {
-            if(e.ChangedButton == MouseButton.Left) {
-                this.DragMove();
-			}
-		}
-		private void CloseWindow(object sender, RoutedEventArgs e) {
-            Close();
-		}
-		#endregion
-	}
+        #endregion
+    }
 }

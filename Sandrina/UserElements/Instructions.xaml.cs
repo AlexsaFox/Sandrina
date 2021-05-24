@@ -19,14 +19,10 @@ namespace Sandrina.UserElements {
 			InitializeComponent();
 		}
 
-		#region Глобальные переменные
-		Color LightYellow = Color.FromRgb(241, 255, 196);
-		#endregion
-
 		private void GotoGame(object sender, RoutedEventArgs e) {
-			MainWindow mainWindow = (Window.GetWindow(this) as MainWindow);
+			MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 			mainWindow.GotoGame(this);
-			mainWindow.TopBarElement.ChangeTopBarColor(LightYellow);
+			mainWindow.TopBarElement.ChangeTopBarColor(GetColor.LightYellow);
 			mainWindow.TopBarElement.ChangeTopBarButtonsMode(Mode.Dark);
 		}
 	}

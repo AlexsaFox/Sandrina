@@ -10,17 +10,299 @@
 		ResizeMode="CanResizeWithGrip"
 		AllowsTransparency="True"
 		Height="550"
-		Width="800">
+		Width="800"
+		Closing="SaveLeaderBoardToFile">
 
-	<Grid>
+	<Window.Resources>
+		<SolidColorBrush x:Key="DarkerBlue"
+						 Color="#2b4155" />
+		<SolidColorBrush x:Key="DarkBlue"
+						 Color="#3E5D7A" />
+		<SolidColorBrush x:Key="Blue"
+						 Color="#647d94" />
+		<SolidColorBrush x:Key="LightBlue"
+						 Color="#A3C3D6" />
+		<SolidColorBrush x:Key="LighterBlue"
+						 Color="#C6E2E9" />
+	</Window.Resources>
+
+	<Grid Background="{StaticResource LightBlue}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30" />
 			<RowDefinition Height="1*" />
 		</Grid.RowDefinitions>
 
-		<local:TopBar Grid.Row="0"/>
+		<local:TopBar x:Name="TopBarElement"
+					  Grid.Row="0" />
 
 		<Grid x:Name="MainGrid"
-			  Grid.Row="1" />
+			  Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*" />
+				<RowDefinition Height="4*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+
+			<Label Content="Игра окончена"
+				   FontSize="72"
+				   FontFamily="Segoe Script" 
+				   Foreground="{StaticResource DarkerBlue}"
+				   Grid.ColumnSpan="2"
+				   VerticalContentAlignment="Center"
+				   HorizontalContentAlignment="Center"/>
+
+			<RichTextBox x:Name="LeaderBoard"
+					 Padding="10"
+					 FontSize="20"
+					 Grid.Column="0"
+					 Grid.Row="1"
+					 Margin="15"
+					 Background="Transparent"
+					 Foreground="{StaticResource DarkBlue}"
+					 BorderBrush="{StaticResource DarkBlue}"
+					 BorderThickness="5"
+					 IsReadOnly="True"
+					 CaretBrush="Transparent">
+				
+				<RichTextBox.Template>
+					<ControlTemplate TargetType="{x:Type RichTextBox}">
+						<Border x:Name="border"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="15"
+								Background="{TemplateBinding Background}"
+								SnapsToDevicePixels="True">
+							<ScrollViewer x:Name="PART_ContentHost"
+										  Focusable="false"
+										  HorizontalScrollBarVisibility="Hidden"
+										  VerticalScrollBarVisibility="Hidden" />
+						</Border>
+					</ControlTemplate>
+				</RichTextBox.Template>
+				<RichTextBox.Resources>
+					<Style TargetType="Paragraph">
+						<Setter Property="Margin" 
+								Value="0"/>
+					</Style>
+				</RichTextBox.Resources>
+			</RichTextBox>
+
+			<Grid Grid.Row="2"
+				  Grid.Column="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="2*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="2*" />
+					<RowDefinition Height="2*" />
+				</Grid.RowDefinitions>
+
+				<Label Content="Итог:"
+					   Grid.Row="0"
+					   FontSize="32"
+					   VerticalContentAlignment="Bottom"
+					   HorizontalContentAlignment="Center" />
+				<Label x:Name="ResultLabel"
+					   Content="X очков"
+					   Grid.Row="1"
+					   FontSize="48"
+					   VerticalContentAlignment="Top"
+					   HorizontalContentAlignment="Center" />
+				<Label x:Name="UserNameLabel"
+					   Content="Ваше имя:"
+					   Grid.Row="2"
+					   FontSize="32"
+					   VerticalContentAlignment="Bottom"
+					   HorizontalContentAlignment="Center" />
+				<TextBox x:Name="UserNameInput"
+						 Text="Enter your name here..."
+						 Grid.Row="3"
+						 Padding="4"
+						 FontSize="32"
+						 Height="57"
+						 Margin="20,0"
+						 VerticalAlignment="Top"
+						 VerticalContentAlignment="Center"
+						 HorizontalContentAlignment="Center" 
+						 Background="Transparent"
+						 Foreground="{StaticResource DarkerBlue}"
+						 BorderThickness="3"
+						 BorderBrush="{StaticResource DarkBlue}"
+						 CaretBrush="{StaticResource DarkBlue}"
+						 SelectionBrush="{StaticResource LighterBlue}"
+						 TextChanged="ChangeNameOnLeaderBoard">
+					<TextBox.Template>
+						<ControlTemplate TargetType="{x:Type TextBox}">
+							<Border x:Name="border"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									CornerRadius="15"
+									Background="{TemplateBinding Background}"
+									SnapsToDevicePixels="True">
+								<ScrollViewer x:Name="PART_ContentHost"
+											  Focusable="false"
+											  HorizontalScrollBarVisibility="Hidden"
+											  VerticalScrollBarVisibility="Hidden" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter TargetName="border"
+											Property="BorderBrush"
+											Value="{StaticResource LighterBlue}" />
+									<Setter Property="Cursor"
+											Value="Hand" />
+								</Trigger>
+								<Trigger Property="IsKeyboardFocused" Value="True">
+									<Setter TargetName="border"
+											Property="BorderBrush"
+											Value="{StaticResource Blue}" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</TextBox.Template>
+				</TextBox>
+
+				<Grid Grid.Row="4">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="1*" />
+					</Grid.ColumnDefinitions>
+
+					<Button Grid.Column="0"
+							Background="{StaticResource DarkBlue}"
+							Click="PlayAgain">
+						<Button.Style>
+							<Style TargetType="Button">
+								<Setter Property="Margin"
+										Value="15" />
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="Button">
+											<Border x:Name="border"
+													CornerRadius="10"
+													Background="{TemplateBinding Background}">
+												<Image Source="/Sandrina;component/Images/Icons/replay.png"
+													   Stretch="Uniform"
+													   Margin="10" />
+												<!-- https://iconmonstr.com/refresh-4-png/ -->
+											</Border>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsMouseOver"
+														 Value="True">
+													<Setter TargetName="border"
+															Property="Background"
+															Value="{StaticResource DarkerBlue}" />
+													<Setter Property="Cursor"
+															Value="Hand" />
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</Button.Style>
+						
+						<Button.ToolTip>
+							<ToolTip Background="{StaticResource LightBlue}"
+									 Foreground="{StaticResource DarkerBlue}"
+									 BorderBrush="{StaticResource DarkerBlue}"
+									 Content="Попробовать еще раз!"/>
+						</Button.ToolTip>
+					</Button>
+					<Button Grid.Column="1"
+							Background="{StaticResource DarkBlue}"
+							Click="DeleteUserResultFromLeaderBoard">
+						<Button.Style>
+							<Style TargetType="Button">
+								<Setter Property="Margin"
+										Value="15" />
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="Button">
+											<Border x:Name="border"
+													CornerRadius="10"
+													Background="{TemplateBinding Background}">
+												<Image Source="/Sandrina;component/Images/Icons/dontsave.png"
+													   Stretch="Uniform"
+													   Margin="10" />
+												<!-- https://iconmonstr.com/bookmark-8-png/ -->
+											</Border>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsMouseOver"
+														 Value="True">
+													<Setter TargetName="border"
+															Property="Background"
+															Value="{StaticResource DarkerBlue}" />
+													<Setter Property="Cursor"
+															Value="Hand" />
+												</Trigger>
+												<Trigger Property="IsEnabled"
+														 Value="False">
+													<Setter TargetName="border"
+															Property="Background"
+															Value="{StaticResource Blue}" />
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</Button.Style>
+
+						<Button.ToolTip>
+							<ToolTip Background="{StaticResource LightBlue}"
+									 Foreground="{StaticResource DarkerBlue}"
+									 BorderBrush="{StaticResource DarkerBlue}"
+									 Content="Не сохранять результат" />
+						</Button.ToolTip>
+					</Button>
+					<Button Grid.Column="2"
+							Background="{StaticResource DarkBlue}"
+							Click="CloseWindow">
+						<Button.Style>
+							<Style TargetType="Button">
+								<Setter Property="Margin"
+										Value="15" />
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="Button">
+											<Border x:Name="border"
+													CornerRadius="10"
+													Background="{TemplateBinding Background}">
+												<Image Source="/Sandrina;component/Images/Icons/turnoff.png"
+													   Stretch="Uniform"
+													   Margin="10" />
+												<!-- https://iconmonstr.com/power-on-off-8-png/ -->
+											</Border>
+											<ControlTemplate.Triggers>
+												<Trigger Property="IsMouseOver"
+														 Value="True">
+													<Setter TargetName="border"
+															Property="Background"
+															Value="{StaticResource DarkerBlue}" />
+													<Setter Property="Cursor"
+															Value="Hand" />
+												</Trigger>
+											</ControlTemplate.Triggers>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</Button.Style>
+						
+						<Button.ToolTip>
+							<ToolTip Background="{StaticResource LightBlue}"
+									 Foreground="{StaticResource DarkerBlue}"
+									 BorderBrush="{StaticResource DarkerBlue}"
+									 Content="Выйти из игры" />
+						</Button.ToolTip>
+					</Button>
+				</Grid>
+			</Grid>
+		</Grid>
 	</Grid>
 </Window>

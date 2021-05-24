@@ -19,14 +19,10 @@ namespace Sandrina.UserElements {
 			InitializeComponent();
 		}
 
-		#region Глобальные переменные
-		Color DarkPeach = Color.FromRgb(192, 124, 106);
-		#endregion
-
 		private void GotoInstructions(object sender, RoutedEventArgs e) {
-			MainWindow mainWindow = (Window.GetWindow(this) as MainWindow);
+			MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 			mainWindow.GotoInstructions(this);
-			mainWindow.TopBarElement.ChangeTopBarColor(DarkPeach);
+			mainWindow.TopBarElement.ChangeTopBarColor(GetColor.DarkPeach);
 			mainWindow.TopBarElement.ChangeTopBarButtonsMode(Mode.Light);
 		}
 	}

@@ -41,8 +41,9 @@ namespace Sandrina.UserElements {
                 Window.GetWindow(this).DragMove();
 			}
 		}
-		private void CloseWindow(object sender, RoutedEventArgs e) {
-            Window.GetWindow(this).Close();
+		public void CloseWindow(object sender, RoutedEventArgs e) {
+            Window CurrentWindow = Window.GetWindow(this);
+            CurrentWindow.Close();
 		}
         private void HideWindow(object sender, RoutedEventArgs e) {
             Window.GetWindow(this).WindowState = WindowState.Minimized;

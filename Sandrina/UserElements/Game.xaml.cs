@@ -49,15 +49,19 @@ namespace Sandrina.UserElements {
 								  Convert.ToByte(c1.B * FirstToSecondRatio + c2.B * (1 - FirstToSecondRatio)));
 		}
 
-		static public Color DarkRed    { get; } = FromHex("#c0392b");
-		static public Color Red		   { get; } = FromHex("#e74c3c");
-		static public Color Orange     { get; } = FromHex("#e67e22");
-		static public Color Yellow     { get; } = FromHex("#f6db6f");
-		static public Color Green      { get; } = FromHex("#6ab04c");
-		static public Color Blue	   { get; } = FromHex("#7ed6df");
-		static public Color DarkCyan   { get; } = FromHex("#78e08f");
-		static public Color PastelBlue { get; } = FromHex("#60a3bc");
-		static public Color DarkBlue   { get; } = FromHex("#3c6382");
+		static public Color Blue	    { get; } = FromHex("#7ed6df");
+		static public Color DarkestRed  { get; } = FromHex("#86271e");
+		static public Color DarkBlue    { get; } = FromHex("#3c6382");
+		static public Color DarkCyan    { get; } = FromHex("#78e08f");
+		static public Color DarkGreen   { get; } = FromHex("#023c03");
+        static public Color DarkPeach   { get; } = FromHex("#c07c6a");
+		static public Color DarkRed     { get; } = FromHex("#c0392b");
+		static public Color Green       { get; } = FromHex("#6ab04c");
+        static public Color LightYellow { get; } = FromHex("#f1ffc4");
+		static public Color Orange      { get; } = FromHex("#e67e22");
+		static public Color PastelBlue  { get; } = FromHex("#60a3bc");
+		static public Color Red		    { get; } = FromHex("#e74c3c");
+		static public Color Yellow      { get; } = FromHex("#f6db6f");
 	}
     #endregion
 
@@ -70,8 +74,10 @@ namespace Sandrina.UserElements {
             GameTimer.Tick += GameTick;
             GameTimer.IsEnabled = true;
             #endregion
+
             #region Инициализация уровней
             SetLevelsSettings();
+            TotalGameTicks = Levels.Select(lvl => lvl.TimeLengthInGameTicks).Aggregate((x, y) => x + y);
             StartNextLevel();
             #endregion
         }
@@ -79,30 +85,36 @@ namespace Sandrina.UserElements {
         #region Глобальные переменные
         // Некоторые временные интервалы			   d     h     m     s    ms
         TimeSpan GameTickLegth         =  new TimeSpan(0,    0,    0,    1,    0);
-        TimeSpan OneTimeIncreaseLength =  new TimeSpan(0,    0,    0,    0,  150);
+        TimeSpan OneTimeIncreaseLength =  new TimeSpan(0,    0,    0,    0,  100);
         TimeSpan ColorChangeLength     =  new TimeSpan(0,    0,    0,    0,  250);
 
         // Главный таймер
         DispatcherTimer GameTimer = new DispatcherTimer();
 
         #region Переменные изменения состояния
-        double HpPerGameTick              =     1;
+        double HpPerGameTick                  =     1;
+                                              
+        double FunPerGameTick                 =    -5;
+        long TicksWithMusicOnLeft             =    20;
+                                              
+        double TemperaturePerGameTick         =     0;
+        double FreezingSpeed                  =  -0.3;
+        const double FreezingMaxSpeed         =    -5;
+        double WarmingPlaidSpeed              =   0.2;
+        const double WarmingPlaidMaxSpeed     =     3;
+        int TicksFromCofeeToIceCream          =     0;
+        const int MinTicksFromCofeeToIceCream =     2;
 
-        double FunPerGameTick             =    -1;
-
-        double TemperaturePerGameTick     =     0;
-        double FreezingSpeed              = -0.05;
-        const double FreezingMaxSpeed     =    -3;
-        double WarmingPlaidSpeed          =  0.05;
-        const double WarmingPlaidMaxSpeed =     2;
-
-        double EnergyPerGameTick          =    -1;
-
-        double SocializationPerGameTick   =    -1;
-        #endregion
-        
-        int CurrentLevelNumber            =     0;
-        long TicksTillLevelChange         =     0;
+        double EnergyPerGameTick              =    -5;
+        double EnergyBooster                  =     1;
+                                              
+        double SocializationPerGameTick       =    -5;
+        #endregion                            
+                                              
+        int CurrentLevelNumber                =     0;
+        long TicksTillLevelChange             =     0;
+        long GameTicksAlive                   =     0;
+        long TotalGameTicks                   =     0;
 
         Random rand = new Random();
         void ResetGlobalVariables() {
@@ -244,7 +256,12 @@ namespace Sandrina.UserElements {
         #region Функционал для таймера
         void GameTick(object sender, EventArgs e) {
             ChangeStats();
+            GameTicksAlive++;
             ChangeLevelBarState();
+
+            if(HpBar.Value == 0) {
+                OverGame();
+            }
         }
 
         double LevelProgress() {
@@ -262,35 +279,77 @@ namespace Sandrina.UserElements {
         }
 
         void ChangeStats() {
-            // Изменение здоровья
-            if (HpBar.IsVisible) {
-                AnimateBarLength(HpBar, HpPerGameTick);
-            }
+            double ChangeHealth = 0;
 
             // Изменение веселья
             if (FunBar.IsVisible) {
                 AnimateBarLength(FunBar, FunPerGameTick);
+
+                if(FunBar.Value >= 97) {
+                    if(rand.Next(0, 3) == 0) ChangeHealth -= 5;
+                }
+                if(FunBar.Value <= 20) {
+                    ChangeHealth -= 5;
+                }
+
+                if(HeadphonesCheckBox.IsChecked == true) TicksWithMusicOnLeft = Math.Max(  0, TicksWithMusicOnLeft - 1);
+                else                                     TicksWithMusicOnLeft = Math.Min(100, TicksWithMusicOnLeft + 1);
+
+                if(TicksWithMusicOnLeft < 0) ChangeHealth -= 2;
             }
 
             // Изменение температуры
             if (TemperatureBar.IsVisible) {
                 if (PlaidCheckBox.IsChecked == true) {
                     if (TemperaturePerGameTick < WarmingPlaidMaxSpeed) TemperaturePerGameTick += WarmingPlaidSpeed;
-                    if (TemperatureBar.Value >= 70) TemperaturePerGameTick = 0;
+                    if (TemperatureBar.Value >= 90) TemperaturePerGameTick = 0;
                 } else {
                     if (TemperaturePerGameTick > FreezingMaxSpeed) TemperaturePerGameTick += FreezingSpeed;
                 }
                 AnimateBarLength(TemperatureBar, TemperaturePerGameTick);
+
+                if(TemperatureBar.Value >= 75) ChangeHealth -= (TemperatureBar.Value - 75)/5;
+                if(TemperatureBar.Value <= 25) ChangeHealth -= (TemperatureBar.Value)     /5;
+
+                if(TicksFromCofeeToIceCream > 0) TicksFromCofeeToIceCream--;
+                if(TicksFromCofeeToIceCream < 0) TicksFromCofeeToIceCream++;
             }
 
             // Изменение энергии
             if (EnergyBar.IsVisible) {
                 AnimateBarLength(EnergyBar, EnergyPerGameTick);
+
+                if(EnergyBar.Value <= 20) ChangeHealth -= rand.Next(0, 10);
+
+                switch(EnergyBar.Value) {
+                    case double db when (90 <= db && db <= 100):
+                        EnergyBooster = 1.2;
+                        break;
+                    
+                    case double db when (50 <= db && db < 90):
+                        EnergyBooster = 1.0;
+                        break;
+                    
+                    case double db when (20 <= db && db < 50):
+                        EnergyBooster = 0.8;
+                        break;
+                    
+                    case double db when (0 <= db && db < 20):
+                        EnergyBooster = 0.5;
+                        break;
+                }
             }
 
             // Изменение социализации
             if (SocializationBar.IsVisible) {
                 AnimateBarLength(SocializationBar, SocializationPerGameTick);
+
+                if(SocializationBar.Value <= 20) ChangeHealth -= rand.Next(0, 10);
+            }
+            
+            // Изменение здоровья
+            if (HpBar.IsVisible) {
+                AnimateBarLength(HpBar, HpPerGameTick + ChangeHealth);
             }
 
             UpdateColors();
@@ -320,8 +379,10 @@ namespace Sandrina.UserElements {
             };
         }
 
+        bool MusicButtonCooldownIsRunning = false;
         void SetCooldown(Button button, TimeSpan CooldownLength) {
             button.IsEnabled = false;
+            if(button.Name == "MusicButton") MusicButtonCooldownIsRunning = true;
 
             DispatcherTimer Cooldown = new DispatcherTimer();
             Cooldown.Interval = CooldownLength;
@@ -330,25 +391,33 @@ namespace Sandrina.UserElements {
         }
 
         void RemoveCooldown(object sender, EventArgs e, Button button) {
-            if (!(button.Content.ToString() == "Музыка" && HeadphonesCheckBox.IsChecked == false)) button.IsEnabled = true;
+            if(button.Content.ToString() == "Музыка") {
+                MusicButtonCooldownIsRunning = false;
+
+                if (HeadphonesCheckBox.IsChecked == true) MusicButton.IsEnabled = true;
+                else                                      MusicButton.IsEnabled = false;
+            } else {
+                button.IsEnabled = true;
+            }
+
             (sender as DispatcherTimer).Stop();
         }
 
         void UpdateStats(Dictionary<BarType, double> ChangeStats) {
-            if (ChangeStats[BarType.Hp]            != 0 && HpBar           .IsVisible) AnimateBarLength(HpBar,            ChangeStats[BarType.Hp],            OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Fun]           != 0 && FunBar          .IsVisible) AnimateBarLength(FunBar,           ChangeStats[BarType.Fun],           OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Temperature]   != 0 && TemperatureBar  .IsVisible) AnimateBarLength(TemperatureBar,   ChangeStats[BarType.Temperature],   OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Energy]        != 0 && EnergyBar       .IsVisible) AnimateBarLength(EnergyBar,        ChangeStats[BarType.Energy],        OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Socialization] != 0 && SocializationBar.IsVisible) AnimateBarLength(SocializationBar, ChangeStats[BarType.Socialization], OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Hp]            != 0 && HpBar           .IsVisible) AnimateBarLength(HpBar,            (ChangeStats[BarType.Hp]            > 0 ? ChangeStats[BarType.Hp]            * EnergyBooster : ChangeStats[BarType.Hp]           ),            OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Fun]           != 0 && FunBar          .IsVisible) AnimateBarLength(FunBar,           (ChangeStats[BarType.Fun]           > 0 ? ChangeStats[BarType.Fun]           * EnergyBooster : ChangeStats[BarType.Fun]          ),           OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Temperature]   != 0 && TemperatureBar  .IsVisible) AnimateBarLength(TemperatureBar,   (ChangeStats[BarType.Temperature]   > 0 ? ChangeStats[BarType.Temperature]   * EnergyBooster : ChangeStats[BarType.Temperature]  ),   OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Energy]        != 0 && EnergyBar       .IsVisible) AnimateBarLength(EnergyBar,        (ChangeStats[BarType.Energy]        > 0 ? ChangeStats[BarType.Energy]        * EnergyBooster : ChangeStats[BarType.Energy]       ),        OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Socialization] != 0 && SocializationBar.IsVisible) AnimateBarLength(SocializationBar, (ChangeStats[BarType.Socialization] > 0 ? ChangeStats[BarType.Socialization] * EnergyBooster : ChangeStats[BarType.Socialization]), OneTimeIncreaseLength);
         }
 
         private void FanFictionsClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
 
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Fun]           = rand.Next(-5, 16);
             ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Energy]        = 5;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -360,10 +429,10 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Fun]           = rand.Next(-5, 16);
             ChangeStats[BarType.Temperature]   = 0;
             ChangeStats[BarType.Energy]        = 0;
-            ChangeStats[BarType.Socialization] = 0;
+            ChangeStats[BarType.Socialization] = 5;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
             SetCooldown(sender as Button, Cooldown);
@@ -373,13 +442,13 @@ namespace Sandrina.UserElements {
         private void CakesClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
             
-            ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Hp]            = -5;
+            ChangeStats[BarType.Fun]           = 10;
             ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Energy]        = 5;
             ChangeStats[BarType.Socialization] = 0;
 
-            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
+            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 4, 0);
             SetCooldown(sender as Button, Cooldown);
             UpdateStats(ChangeStats);
         }
@@ -388,10 +457,13 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
-            ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Fun]           = 5;
+            ChangeStats[BarType.Temperature]   = 10;
+            ChangeStats[BarType.Energy]        = 15;
             ChangeStats[BarType.Socialization] = 0;
+
+            if(TicksFromCofeeToIceCream < 0) ChangeStats[BarType.Hp] -= 10;
+            TicksFromCofeeToIceCream += MinTicksFromCofeeToIceCream;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
             SetCooldown(sender as Button, Cooldown);
@@ -402,10 +474,13 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
-            ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Fun]           = 10;
+            ChangeStats[BarType.Temperature]   = -10;
+            ChangeStats[BarType.Energy]        = 5;
             ChangeStats[BarType.Socialization] = 0;
+            
+            if(TicksFromCofeeToIceCream > 0) ChangeStats[BarType.Hp] -= 10;
+            TicksFromCofeeToIceCream -= MinTicksFromCofeeToIceCream;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
             SetCooldown(sender as Button, Cooldown);
@@ -415,13 +490,13 @@ namespace Sandrina.UserElements {
         private void SleepClick(object sender, RoutedEventArgs e) {
             var ChangeStats = GetStatsDictionary();
             
-            ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
-            ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
-            ChangeStats[BarType.Socialization] = 0;
+            ChangeStats[BarType.Hp]            = 10;
+            ChangeStats[BarType.Fun]           = -10;
+            ChangeStats[BarType.Temperature]   = rand.Next(-5, 6);
+            ChangeStats[BarType.Energy]        = 60;
+            ChangeStats[BarType.Socialization] = -10;
 
-            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
+            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 10, 0);
             SetCooldown(sender as Button, Cooldown);
             UpdateStats(ChangeStats);
         }
@@ -430,9 +505,9 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
 
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
-            ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Fun]           = rand.Next(5, 16);
+            ChangeStats[BarType.Temperature]   = 5;
+            ChangeStats[BarType.Energy]        = -10;
             ChangeStats[BarType.Socialization] = 0;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
@@ -444,10 +519,10 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Fun]           = rand.Next(-5, 11);
             ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
-            ChangeStats[BarType.Socialization] = 0;
+            ChangeStats[BarType.Energy]        = -5;
+            ChangeStats[BarType.Socialization] = 10;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
             SetCooldown(sender as Button, Cooldown);
@@ -458,10 +533,10 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
-            ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
-            ChangeStats[BarType.Socialization] = 0;
+            ChangeStats[BarType.Fun]           = 15;
+            ChangeStats[BarType.Temperature]   = -5;
+            ChangeStats[BarType.Energy]        = -10;
+            ChangeStats[BarType.Socialization] = 20;
 
             TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
             SetCooldown(sender as Button, Cooldown);
@@ -472,19 +547,21 @@ namespace Sandrina.UserElements {
             var ChangeStats = GetStatsDictionary();
             
             ChangeStats[BarType.Hp]            = 0;
-            ChangeStats[BarType.Fun]           = 0;
+            ChangeStats[BarType.Fun]           = 15;
             ChangeStats[BarType.Temperature]   = 0;
-            ChangeStats[BarType.Energy]        = 0;
+            ChangeStats[BarType.Energy]        = rand.Next(-5, 16);
             ChangeStats[BarType.Socialization] = 0;
 
-            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 3, 0);
+            TimeSpan Cooldown = new TimeSpan(0, 0, 0, 5, 0);
             SetCooldown(sender as Button, Cooldown);
             UpdateStats(ChangeStats);
         }
 
         private void ChangeMusicState(object sender, RoutedEventArgs e) {
-            if ((sender as CheckBox).IsChecked == true) MusicButton.IsEnabled = true;
-            else MusicButton.IsEnabled = false;
+            if(!MusicButtonCooldownIsRunning) { 
+                if ((sender as CheckBox).IsChecked == true) MusicButton.IsEnabled = true;
+                else MusicButton.IsEnabled = false;
+            }
         }
         #endregion
 
@@ -524,7 +601,7 @@ namespace Sandrina.UserElements {
             public IncreaseDifficultyLevel() : this(new Dictionary<BarType, double>(), new TimeSpan(1), Colors.White, 1) { }
         }
 
-        List<Level> Levels = new List<Level>();
+        static List<Level> Levels = new List<Level>();
         void SetLevelsSettings() {
             Levels = new List<Level> {
                 new AddItemsLevel(		// Описание первого уровня
@@ -542,7 +619,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    5
+                    30
                 ),
                 new AddItemsLevel(		// Описание второго уровня
 					new List<UIElement> {
@@ -554,7 +631,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    5
+                    45
                 ),
                 new AddItemsLevel(		// Описание третьего уровня
 					new List<UIElement> {
@@ -565,7 +642,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    5
+                    60
                 ),
                 new AddItemsLevel(		// Описание четвертого уровня
 					new List<UIElement> {
@@ -576,26 +653,35 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    5
+                    90
                 ),
                 new IncreaseDifficultyLevel(		// Описание пятого уровня
 					new Dictionary<BarType, double> {
-                        { BarType.Hp,              1 },
-                        { BarType.Fun,            -1 },
-                        { BarType.Temperature,  0.05 },
-                        { BarType.Energy,         -1 },
-                        { BarType.Socialization,  -1 }
+                        { BarType.Hp,               0 },
+                        { BarType.Fun,           -7.5 },
+                        { BarType.Temperature,    0.5 },
+                        { BarType.Energy,        -7.5 },
+                        { BarType.Socialization, -7.5 }
                     },
                     new TimeSpan(0, 0, 0, 1, 0),
                     GetColor.DarkRed,
-                    5
+                    120
                 ),
             };
         }
 
+        void OverGame() {
+            GameTimer.Stop();
+            EndGameWindow ResultWindow = new EndGameWindow();
+            ResultWindow.Show();
+            ResultWindow.SetUpEndGameWindow(GameTicksAlive, TotalGameTicks);
+            Window.GetWindow(this).Close();
+        }
+
         void StartNextLevel() {
-            if(CurrentLevelNumber == Levels.Count) { // Если игра пройдена
-                GameTimer.Stop();
+            if(CurrentLevelNumber == Levels.Count) {
+                OverGame();
+                return;
             } 
 
             Level CurrentLevel = Levels[CurrentLevelNumber++];

@@ -8,30 +8,56 @@
 			 Height="520">
 
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="MyGreen"
-						 Color="#FFA3DA95" />
-		<SolidColorBrush x:Key="MyFontColor"
-						 Color="#FF3E2A35" />
-		<SolidColorBrush x:Key="LightBlue"
-						 Color="#FFC6E2E9" />
-		<SolidColorBrush x:Key="MidBlue"
-						 Color="#FF82A0B2" />
-		<SolidColorBrush x:Key="DarkBlue"
-						 Color="#FF223444" />
-		<SolidColorBrush x:Key="MyPeach"
-						 Color="#FFFFCAAF " />
-		<SolidColorBrush x:Key="MyDarkPeach"
-						 Color="#FFF19C85" />
-		<SolidColorBrush x:Key="MyFontColor2"
-						 Color="#FF673B3F" />
-		<SolidColorBrush x:Key="MyDarkGreen"
-						 Color="#FF06B025" />
-		<SolidColorBrush x:Key="MyLightGreen"
-						 Color="#FFA3DA95" />
-		<SolidColorBrush x:Key="LightYellow"
-						 Color="#F1FFC4" />
-		<SolidColorBrush x:Key="MyMint"
-						 Color="#FFB0DACD" />
+		<SolidColorBrush x:Key="MyGreen" Color="#FFA3DA95" />
+		<SolidColorBrush x:Key="MyFontColor" Color="#FF3E2A35" />
+		<SolidColorBrush x:Key="LightBlue" Color="#FFC6E2E9" />
+		<SolidColorBrush x:Key="MidBlue" Color="#FF82A0B2" />
+		<SolidColorBrush x:Key="DarkBlue" Color="#FF223444" />
+		<SolidColorBrush x:Key="MyPeach" Color="#FFFFCAAF " />
+		<SolidColorBrush x:Key="MyDarkPeach" Color="#FFF19C85" />
+		<SolidColorBrush x:Key="MyFontColor2" Color="#FF673B3F" />
+		<SolidColorBrush x:Key="MyDarkGreen" Color="#FF06B025" />
+		<SolidColorBrush x:Key="MyLightGreen" Color="#FFA3DA95" />
+		<SolidColorBrush x:Key="LightYellow" Color="#F1FFC4" />
+		<SolidColorBrush x:Key="MyMint" Color="#FFB0DACD" />
+		
+		<Image x:Key="LockImage" x:Shared="false" Source="/Sandrina;component/Images/Icons/lock.png" Stretch="Uniform" Margin="10" />
+		<Style x:Key="ActionButtonStyle" TargetType="Button">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="Background" Value="#dfdfdf" />
+			<Setter Property="Visibility" Value="Hidden" />
+			<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Button">
+							<Border x:Name="border"
+									CornerRadius="10"
+									Background="{TemplateBinding Background}">
+								<ContentPresenter x:Name="contentPresenter"
+												  Focusable="False"
+												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+												  Margin="{TemplateBinding Padding}"
+												  RecognizesAccessKey="True"
+												  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
+								</ContentPresenter>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsMouseOver"
+										 Value="True">
+									<Setter Property="Cursor" Value="Hand" />
+									<Setter TargetName="border" Property="Background" Value="#eee" />
+								</Trigger>
+							
+								<Trigger Property="IsEnabled"
+										 Value="False" >
+									<Setter TargetName="contentPresenter" Property="Content" Value="{StaticResource LockImage}"/>
+									<Setter TargetName="border" Property="Background" Value="#555" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
 	</UserControl.Resources>
 
 	<Grid Background="{DynamicResource LightYellow}">
@@ -311,61 +337,52 @@
 						<Button x:Name="FanFictionsButton"
 								Content="Фанфики"
 								Grid.Row="1"
-								Margin="10"
-								Visibility="Hidden"
-								Click="FanFictionsClick" />
+								Click="FanFictionsClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="SeriesButton"
 								Content="Сериалы"
-								Margin="10"
 								Grid.Row="1"
 								Grid.Column="1"
-								Visibility="Hidden"
-								Click="SeriesClick" />
+								Click="SeriesClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="CakesButton"
 								Content="Тортики"
-								Margin="10"
 								Grid.Row="2"
-								Visibility="Hidden"
-								Click="CakesClick" />
+								Click="CakesClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="CofeeButton"
 								Content="Кофе"
-								Margin="10"
 								Grid.Row="2"
 								Grid.Column="1"
-								Visibility="Hidden"
-								Click="CoffeeClick" />
+								Click="CoffeeClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="IceCreamButton"
 								Content="Мороженое"
-								Margin="10"
 								Grid.Row="3"
-								Visibility="Hidden"
-								Click="IceCreamClick" />
+								Click="IceCreamClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="SleepButton"
 								Content="Сон"
-								Margin="10"
 								Grid.Row="3"
 								Grid.Column="1"
-								Visibility="Hidden"
-								Click="SleepClick" />
+								Click="SleepClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="DanceButton"
 								Content="Танцы"
-								Margin="10"
 								Grid.Row="4"
-								Visibility="Hidden"
-								Click="DanceClick" />
+								Click="DanceClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="SocialMediaButton"
 								Content="Соцсети"
-								Margin="10"
 								Grid.Row="4"
 								Grid.Column="1"
-								Visibility="Hidden"
-								Click="SocialMediaClick" />
+								Click="SocialMediaClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<Button x:Name="WalkButton"
 								Content="Прогулка"
-								Margin="10"
 								Grid.Row="5"
-								Visibility="Hidden"
-								Click="WalkClick" />
+								Click="WalkClick" 
+								Style="{StaticResource ActionButtonStyle}" />
 
 						<CheckBox x:Name="PlaidCheckBox"
 								  Content="Плед"
@@ -375,12 +392,11 @@
 								  VerticalContentAlignment="Center" />
 						<Button x:Name="MusicButton"
 								Content="Музыка"
-								Margin="10"
 								Grid.Column="1"
 								Grid.Row="5"
 								IsEnabled="False"
-								Visibility="Hidden"
-								Click="MusicClick" />
+								Click="MusicClick"
+								Style="{StaticResource ActionButtonStyle}" />
 						<CheckBox x:Name="HeadphonesCheckBox" Content="Наушники"
 								  Margin="10,0,0,0"
 								  Grid.Row="6"

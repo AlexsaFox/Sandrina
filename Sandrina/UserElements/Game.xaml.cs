@@ -100,7 +100,7 @@ namespace Sandrina.UserElements {
         double TemperaturePerGameTick         =     0;
         double FreezingSpeed                  =  -0.3;
         const double FreezingMaxSpeed         =    -5;
-        double WarmingPlaidSpeed              =   0.2;
+        double WarmingPlaidSpeed              =   0.5;
         const double WarmingPlaidMaxSpeed     =     3;
         int TicksFromCofeeToIceCream          =     0;
         const int MinTicksFromCofeeToIceCream =     2;

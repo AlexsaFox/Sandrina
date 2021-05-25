@@ -614,12 +614,11 @@ namespace Sandrina.UserElements {
                         SeriesButton,
                         CakesButton,
                         MusicButton,
-                        PlaidCheckBox,
                         HeadphonesCheckBox
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    30
+                    20
                 ),
                 new AddItemsLevel(		// Описание второго уровня
 					new List<UIElement> {
@@ -631,7 +630,7 @@ namespace Sandrina.UserElements {
                     },
                     new List<OutfitType> { },
                     GetColor.Green,
-                    45
+                    30
                 ),
                 new AddItemsLevel(		// Описание третьего уровня
 					new List<UIElement> {

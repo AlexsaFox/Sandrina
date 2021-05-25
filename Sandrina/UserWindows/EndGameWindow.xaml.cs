@@ -95,10 +95,12 @@ namespace Sandrina.UserElements {
             
             Saves = new List<UserData>();
             foreach (string Line in SavedContent.Split('\n')) {
-                Saves.Add(new UserData());
-                List<string> Splitted = Line.Split(' ').ToList();
-                Saves[Saves.Count - 1].Name  = string.Join(" ", Splitted.Take(Splitted.Count - 1));
-                Saves[Saves.Count - 1].Score = Convert.ToInt32(Splitted.Skip(Splitted.Count - 1).ToList()[0]);
+                if(!string.IsNullOrEmpty(Line)) { 
+                    Saves.Add(new UserData());
+                    List<string> Splitted = Line.Split(' ').ToList();
+                    Saves[Saves.Count - 1].Name  = string.Join(" ", Splitted.Take(Splitted.Count - 1));
+                    Saves[Saves.Count - 1].Score = Convert.ToInt32(Splitted.Skip(Splitted.Count - 1).ToList()[0]);
+                }
             }
         }
         public void SaveLeaderBoardToFile(object sender, System.ComponentModel.CancelEventArgs e) {

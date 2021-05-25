@@ -7,263 +7,195 @@
 			 Width="800"
 			 Height="520">
 
-	<UserControl.Resources>
-		<SolidColorBrush x:Key="MyGreen" Color="#FFA3DA95" />
-		<SolidColorBrush x:Key="MyFontColor" Color="#FF3E2A35" />
-		<SolidColorBrush x:Key="LightBlue" Color="#FFC6E2E9" />
-		<SolidColorBrush x:Key="MidBlue" Color="#FF82A0B2" />
-		<SolidColorBrush x:Key="DarkBlue" Color="#FF223444" />
-		<SolidColorBrush x:Key="MyPeach" Color="#FFFFCAAF " />
-		<SolidColorBrush x:Key="MyDarkPeach" Color="#FFF19C85" />
-		<SolidColorBrush x:Key="MyFontColor2" Color="#FF673B3F" />
-		<SolidColorBrush x:Key="MyDarkGreen" Color="#FF06B025" />
-		<SolidColorBrush x:Key="MyLightGreen" Color="#FFA3DA95" />
-		<SolidColorBrush x:Key="LightYellow" Color="#F1FFC4" />
-		<SolidColorBrush x:Key="MyMint" Color="#FFB0DACD" />
-		
-		<Image x:Key="LockImage" x:Shared="false" Source="/Sandrina;component/Images/Icons/lock.png" Stretch="Uniform" Margin="10" />
-		<Style x:Key="ActionButtonStyle" TargetType="Button">
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="Background" Value="#dfdfdf" />
-			<Setter Property="Visibility" Value="Hidden" />
-			<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="Button">
-							<Border x:Name="border"
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="MyGreen" Color="#FFA3DA95" />
+        <SolidColorBrush x:Key="MyFontColor" Color="#FF3E2A35" />
+        <SolidColorBrush x:Key="LightBlue" Color="#FFC6E2E9" />
+        <SolidColorBrush x:Key="MidBlue" Color="#FF82A0B2" />
+        <SolidColorBrush x:Key="DarkBlue" Color="#FF223444" />
+        <SolidColorBrush x:Key="MyPeach" Color="#FFFFCAAF " />
+        <SolidColorBrush x:Key="MyDarkPeach" Color="#FFF19C85" />
+        <SolidColorBrush x:Key="MyFontColor2" Color="#FF673B3F" />
+        <SolidColorBrush x:Key="MyDarkGreen" Color="#FF06B025" />
+        <SolidColorBrush x:Key="MyLightGreen" Color="#FFA3DA95" />
+        <SolidColorBrush x:Key="LightYellow" Color="#F1FFC4" />
+        <SolidColorBrush x:Key="MyMint" Color="#FFB0DACD" />
+
+        <Image x:Key="LockImage" x:Shared="false" Source="/Sandrina;component/Images/Icons/lock.png" Stretch="Uniform" Margin="10" />
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Background" Value="#dfdfdf" />
+            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
 									CornerRadius="10"
 									Background="{TemplateBinding Background}">
-								<ContentPresenter x:Name="contentPresenter"
+                            <ContentPresenter x:Name="contentPresenter"
 												  Focusable="False"
 												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 												  Margin="{TemplateBinding Padding}"
 												  RecognizesAccessKey="True"
 												  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
-								</ContentPresenter>
-							</Border>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsMouseOver"
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
 										 Value="True">
-									<Setter Property="Cursor" Value="Hand" />
-									<Setter TargetName="border" Property="Background" Value="#eee" />
-								</Trigger>
-							
-								<Trigger Property="IsEnabled"
-										 Value="False" >
-									<Setter TargetName="contentPresenter" Property="Content" Value="{StaticResource LockImage}"/>
-									<Setter TargetName="border" Property="Background" Value="#555" />
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-	</UserControl.Resources>
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter TargetName="border" Property="Background" Value="#eee" />
+                            </Trigger>
 
-	<Grid Background="{DynamicResource LightYellow}">
-		<TabControl x:Name="Tabs"
+                            <Trigger Property="IsEnabled"
+										 Value="False" >
+                                <Setter TargetName="contentPresenter" Property="Content" Value="{StaticResource LockImage}"/>
+                                <Setter TargetName="border" Property="Background" Value="#555" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource LightYellow}">
+        <TabControl x:Name="Tabs"
 					BorderBrush="{DynamicResource MyPeach}"
 					Background="{DynamicResource MyPeach}"
 					Margin="0"
 					SelectionChanged="TabChanged">
-			<TabItem x:Name="WardrobTab"
+            <TabItem x:Name="WardrobTab"
 					 Header="Гардероб"
 					 BorderBrush="#FFFFCAAF"
 					 Background="#FFFFCAAF"
 					 FontSize="18"
 					 Foreground="#FF3E2A35">
-				<Grid x:Name="MainGrid"
+                <Grid x:Name="MainGrid"
 					  Background="#FFFFCAAF">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="50" />
-						<RowDefinition Height="150" />
-						<RowDefinition Height="30" />
-						<RowDefinition Height="100" />
-						<RowDefinition Height="1*" />
-						<RowDefinition Height="30" />
-						<RowDefinition Height="50" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="1*" />
-						<ColumnDefinition Width="100" />
-						<ColumnDefinition Width="100" />
-						<ColumnDefinition Width="100" />
-					</Grid.ColumnDefinitions>
 
-					<Label Content="Гардероб"
-						   FontSize="26"
-						   FontFamily="Segoe Print"
-						   FontWeight="Bold"
-						   Grid.Column="1"
-						   Grid.ColumnSpan="3"
-						   VerticalContentAlignment="Center"
-						   HorizontalContentAlignment="Center" />
 
-					<Image Stretch="Fill"
+                    <Menu HorizontalAlignment="Left" Height="58" Margin="520,29,0,0" VerticalAlignment="Top" Width="181" Background="#FFF19C85">
+                        <MenuItem Header="Внешний вид" Height="58" Width="181" FontSize="35" Background="#FFF19C85" FontFamily="Gabriola" >
+                            <RadioButton x:Name="Hair" Content="Волосы" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="Hair_Checked" Unchecked="Hair_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
+                            <RadioButton x:Name="dress_up" Content="Гардероб" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="dress_up_Checked" Unchecked="dress_up_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
+                        </MenuItem>
+                    </Menu>
+                    <Grid x:Name="GridWithClothes" HorizontalAlignment="Left" Height="286" Margin="464,173,0,0" VerticalAlignment="Top" Width="280" Background="#FFD7AE87" Visibility="Hidden">
+                        <Image Stretch="Fill"
 						   Source="/Sandrina;component/Images/Left.png"
-						   Grid.Column="1"
-						   Height="150"
 						   Width="50"
-						   HorizontalAlignment="Right"
-						   Grid.Row="1" />
-					<ListBox x:Name="Box"
-							 Height="125"
+						   HorizontalAlignment="Right" Margin="0,10,225,0" />
+                        <ListBox x:Name="Box"
 							 Background="#FF3E2A35"
-							 BorderBrush="#25191f"
-							 Grid.Column="2"
-							 Grid.Row="1" />
-					<Image Stretch="Fill"
-						   Source="/Sandrina;component/Images/Right.png"
-						   Grid.Column="3"
-						   Height="150"
-						   Width="50"
-						   HorizontalAlignment="Left"
-						   Grid.ColumnSpan="2"
-						   Grid.Row="1" />
+							 BorderBrush="#25191f" Margin="55,26,50,30" >
+                            <Button x:Name="Costume1" Height="190" Width="130" Click="Costume1_Click" BorderBrush="{x:Null}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Polina Clothes.png" Stretch="Uniform"/>
+                                </Button.Background>
 
-					<RadioButton x:Name="Polly"
-								 Content="1 аутфит"
-								 GroupName="Costumes"
-								 FontSize="20"
-								 Grid.Column="1"
-								 Grid.Row="2"
-								 VerticalContentAlignment="Center" />
-					<RadioButton x:Name="Alex"
-								 Content="2 аутфит"
-								 GroupName="Costumes"
-								 FontSize="20"
-								 Grid.Column="3"
-								 Grid.Row="2"
-								 VerticalContentAlignment="Center" />
-					<Button x:Name="Get_dressed"
-							Content="Примерить"
-							Margin="50,20"
-							Background="#FFC86B65"
-							FontFamily="Segoe Print"
-							Grid.Column="1"
-							Grid.Row="3"
-							Grid.ColumnSpan="3" />
-					<CheckBox x:Name="Pets"
-							  Content="Животное"
-							  Margin="50,0"
-							  FontSize="24"
-							  Grid.Column="1"
-							  Grid.ColumnSpan="3"
-							  Grid.Row="5"
-							  VerticalContentAlignment="Center" />
-					<RadioButton x:Name="Cat"
-								 Content="Кошка"
-								 Margin="0"
-								 FontSize="20"
-								 GroupName="Pet"
-								 IsEnabled="False"
-								 Grid.Column="3"
-								 Grid.Row="6"
-								 VerticalContentAlignment="Center" />
-					<RadioButton x:Name="Dog"
-								 Content="Собака"
-								 Margin="0"
-								 FontSize="20"
-								 GroupName="Pet"
-								 IsEnabled="False"
-								 Grid.Column="1"
-								 Grid.Row="6"
-								 VerticalContentAlignment="Center" />
-					<Grid x:Name="SecondGrid"
-						  Margin="10,10,10,10"
-						  Background="#FFD7AE87"
-						  Grid.RowSpan="7">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="1*" />
-							<ColumnDefinition Width="2*" />
-						</Grid.ColumnDefinitions>
-						<Image SnapsToDevicePixels="True"
-							   Stretch="Uniform"
-							   HorizontalAlignment="Right"
-							   Source="/Sandrina;component/Images/DefaultSandrina.png"
-							   Grid.Column="1" />
-						<Image x:Name="AlexCostume"
-							   SnapsToDevicePixels="True"
-							   Stretch="Uniform"
-							   Source="/Sandrina;component/Images/DefaultSandrinaInSashaClothes.png"
-							   Visibility="Hidden"
-							   Grid.Column="1" />
-						<Image x:Name="CostumePolly"
-							   SnapsToDevicePixels="True"
-							   Stretch="Uniform"
-							   Source="/Sandrina;component/Images/DefaultSandrinaInPolinaClothes.png"
-							   Visibility="Hidden"
-							   Grid.Column="1" />
-						<Image x:Name="CatImage"
-							   VerticalAlignment="Bottom"
-							   HorizontalAlignment="Right"
-							   SnapsToDevicePixels="True"
-							   Stretch="Uniform"
-							   Source="/Sandrina;component/Images/Catto.png"
-							   Visibility="Visible" />
-						<Image x:Name="DogImage"
-							   VerticalAlignment="Bottom"
-							   Margin="0,0,-10,0"
-							   Height="138"
-							   Width="138"
-							   Source="/Sandrina;component/Images/Doggo.png"
-							   Visibility="Hidden"
-							   Stretch="Uniform"
-							   Grid.Column="0" />
-					</Grid>
-				</Grid>
-			</TabItem>
-			<TabItem x:Name="GameTab"
+                            </Button>
+                            <Button x:Name="Costume2" Height="190" Width="130" Click="Costume2_Click" BorderBrush="{x:Null}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Sasha Clothes.png" Stretch="Uniform"/>
+                                </Button.Background>
+
+                            </Button>
+                            <Button x:Name="Costume3" Height="190" Width="120" BorderBrush="{x:Null}" Click="Costume3_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="First Outfit.png" Stretch="Uniform"/>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="Costume4" Height="190" Width="120" BorderBrush="{x:Null}" Click="Costume4_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Second Outfit.png" Stretch="Uniform"/>
+                                </Button.Background>
+                            </Button>
+                        </ListBox>
+                        <Image Stretch="Fill"
+						   Source="/Sandrina;component/Images/Right.png"
+						   Width="50"
+						   HorizontalAlignment="Left" Margin="230,10,0,0" />
+
+                    </Grid>
+                    <Grid x:Name="GridWithHair" HorizontalAlignment="Left" Height="286" Margin="464,173,0,0" VerticalAlignment="Top" Width="280" Background="#FFD7AE87" Visibility="Hidden">
+                        <Label Content="Прическа" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" FontFamily="Gabriola" FontSize="28" Height="50" Width="106" FontWeight="Bold"/>
+                        <Label Content="Цвет волос" HorizontalAlignment="Left" Margin="90,136,0,0" VerticalAlignment="Top" Width="121" FontFamily="Gabriola" FontSize="28" FontWeight="Bold"/>
+                        <RadioButton x:Name="HairStyle1" Content="Распущенные" HorizontalAlignment="Left" Margin="78,55,0,0" VerticalAlignment="Top" GroupName="HairStyle" Checked="HairStyle1_Checked" Unchecked="HairStyle1_Unchecked"/>
+                        <RadioButton x:Name="HairStyle2" Content="Хвостик" HorizontalAlignment="Left" Margin="95,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.135,1.44" GroupName="HairStyle" Checked="HairStyle2_Checked" Unchecked="HairStyle2_Unchecked"/>
+                        <RadioButton x:Name="HairColor1" Content="Русый" HorizontalAlignment="Left" Margin="110,186,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.527,4.991" GroupName="HairColor" Unchecked="HairColor1_Unchecked" Checked="HairColor1_Checked"/>
+                        <RadioButton x:Name="HairColor2" Content="Блонд" HorizontalAlignment="Left" Margin="110,231,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.135,1.44" GroupName="HairColor" Checked="HairColor2_Checked" Unchecked="HairColor2_Unchecked"/>
+                    </Grid>
+                    <Grid x:Name="SecondGrid"
+						  Margin="67,29,397.4,25"
+						  Background="#FFD7AE87">
+
+                        <Image x:Name="CostumePolly" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Polinas Clothes (Default).png" Visibility="Hidden"/>
+                        <Image x:Name="AlexCostume" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Sasha Clothes (default).png" Visibility="Hidden"/>
+                        <Image x:Name="FirstExtraClothes" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina First Outfit Clothes (Default).png" Visibility="Hidden"/>
+                        <Image x:Name="SecondExtraClothes" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Second Outfit Clothes (Default).png" Visibility="Hidden"/>
+                        <Image x:Name="DefoltWithoutHair" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina_Origin.png"/>
+                        <Image x:Name="Style2Color1" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Hair 2 Color1.png" Visibility="Hidden"/>
+                        <Image x:Name="Style1Color1" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Hair 1 Color 1.png"/>
+                        <Image x:Name="Style2Color2" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Hair 1.png"  Visibility="Hidden"/>
+                        <Image x:Name="Style1Color2" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="330" Source="Sandrina Hair 2.png"  Visibility="Hidden"/>
+                        
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="GameTab"
 					 Header="Игра"
 					 FontSize="18"
 					 Background="{DynamicResource LightBlue}"
 					 Foreground="{DynamicResource MyFontColor}">
-				<Grid Background="{DynamicResource MyMint}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="5*" />
-						<ColumnDefinition Width="3*" />
-						<ColumnDefinition Width="70" />
-					</Grid.ColumnDefinitions>
+                <Grid Background="{DynamicResource MyMint}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="70" />
+                    </Grid.ColumnDefinitions>
 
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="1*" />
-							<RowDefinition Height="1*" />
-						</Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
 
-						<Image Source="/Sandrina;component/Images/SUPER-DUPER-MEGA-CUSTOM-ULTRA-NANO-MEGA-OMEGA-AWESOME-HIGH-QUALITY-ULTRA-HD-SUIT.png" />
-						<Grid Grid.Row="1">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="130" />
-								<ColumnDefinition Width="1*" />
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="1*" />
-								<RowDefinition Height="1*" />
-								<RowDefinition Height="1*" />
-								<RowDefinition Height="1*" />
-								<RowDefinition Height="1*" />
-							</Grid.RowDefinitions>
+                        <Image Source="/Sandrina;component/Images/SUPER-DUPER-MEGA-CUSTOM-ULTRA-NANO-MEGA-OMEGA-AWESOME-HIGH-QUALITY-ULTRA-HD-SUIT.png" />
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
 
-							<Label x:Name="HpLabel"
+                            <Label x:Name="HpLabel"
 								   Content="Здоровье"
 								   VerticalContentAlignment="Center"
 								   HorizontalContentAlignment="Right"
 								   Visibility="Hidden" />
-							<ProgressBar x:Name="HpBar"
+                            <ProgressBar x:Name="HpBar"
 										 Grid.Column="1"
 										 Margin="10"
 										 Value="100"
 										 Foreground="#6ab04c"
 										 Visibility="Hidden" />
 
-							<Label x:Name="FunLabel"
+                            <Label x:Name="FunLabel"
 								   Content="Веселье"
 								   Grid.Row="1"
 								   VerticalContentAlignment="Center"
 								   HorizontalContentAlignment="Right"
 								   Visibility="Hidden" />
-							<ProgressBar x:Name="FunBar"
+                            <ProgressBar x:Name="FunBar"
 										 Grid.Column="1"
 										 Margin="10"
 										 Grid.Row="1"
@@ -271,13 +203,13 @@
 										 Visibility="Hidden"
 										 Foreground="#6ab04c" />
 
-							<Label x:Name="TemperatureLabel"
+                            <Label x:Name="TemperatureLabel"
 								   Content="Температура"
 								   Grid.Row="2"
 								   VerticalContentAlignment="Center"
 								   HorizontalContentAlignment="Right"
 								   Visibility="Hidden" />
-							<ProgressBar x:Name="TemperatureBar"
+                            <ProgressBar x:Name="TemperatureBar"
 										 Grid.Column="1"
 										 Margin="10"
 										 Grid.Row="2"
@@ -285,13 +217,13 @@
 										 Visibility="Hidden"
 										 Foreground="#6ab04c" />
 
-							<Label x:Name="EnergyLabel"
+                            <Label x:Name="EnergyLabel"
 								   Content="Энергия"
 								   Grid.Row="3"
 								   VerticalContentAlignment="Center"
 								   HorizontalContentAlignment="Right"
 								   Visibility="Hidden" />
-							<ProgressBar x:Name="EnergyBar"
+                            <ProgressBar x:Name="EnergyBar"
 										 Grid.Column="1"
 										 Margin="10"
 										 Grid.Row="3"
@@ -299,105 +231,105 @@
 										 Visibility="Hidden"
 										 Foreground="#6ab04c" />
 
-							<Label x:Name="SocializationLabel"
+                            <Label x:Name="SocializationLabel"
 								   Content="Социализация"
 								   Grid.Row="4"
 								   VerticalContentAlignment="Center"
 								   HorizontalContentAlignment="Right"
 								   Visibility="Hidden" />
-							<ProgressBar x:Name="SocializationBar"
+                            <ProgressBar x:Name="SocializationBar"
 										 Grid.Column="1"
 										 Margin="10"
 										 Grid.Row="4"
 										 Value="70"
 										 Visibility="Hidden"
 										 Foreground="#6ab04c" />
-						</Grid>
-					</Grid>
-					<Grid Grid.Column="1">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="1*" />
-							<ColumnDefinition Width="1*" />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="2*" />
-							<RowDefinition Height="4*" />
-							<RowDefinition Height="4*" />
-							<RowDefinition Height="4*" />
-							<RowDefinition Height="4*" />
-							<RowDefinition Height="4*" />
-							<RowDefinition Height="2*" />
-							<RowDefinition Height="1*" />
-						</Grid.RowDefinitions>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
 
-						<Label Content="Взаимодействие"
+                        <Label Content="Взаимодействие"
 							   Grid.ColumnSpan="2"
 							   VerticalContentAlignment="Center"
 							   HorizontalContentAlignment="Center" />
-						<Button x:Name="FanFictionsButton"
+                        <Button x:Name="FanFictionsButton"
 								Content="Фанфики"
 								Grid.Row="1"
 								Click="FanFictionsClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="SeriesButton"
+                        <Button x:Name="SeriesButton"
 								Content="Сериалы"
 								Grid.Row="1"
 								Grid.Column="1"
 								Click="SeriesClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="CakesButton"
+                        <Button x:Name="CakesButton"
 								Content="Тортики"
 								Grid.Row="2"
 								Click="CakesClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="CofeeButton"
+                        <Button x:Name="CofeeButton"
 								Content="Кофе"
 								Grid.Row="2"
 								Grid.Column="1"
 								Click="CoffeeClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="IceCreamButton"
+                        <Button x:Name="IceCreamButton"
 								Content="Мороженое"
 								Grid.Row="3"
 								Click="IceCreamClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="SleepButton"
+                        <Button x:Name="SleepButton"
 								Content="Сон"
 								Grid.Row="3"
 								Grid.Column="1"
 								Click="SleepClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="DanceButton"
+                        <Button x:Name="DanceButton"
 								Content="Танцы"
 								Grid.Row="4"
 								Click="DanceClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="SocialMediaButton"
+                        <Button x:Name="SocialMediaButton"
 								Content="Соцсети"
 								Grid.Row="4"
 								Grid.Column="1"
 								Click="SocialMediaClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<Button x:Name="WalkButton"
+                        <Button x:Name="WalkButton"
 								Content="Прогулка"
 								Grid.Row="5"
 								Click="WalkClick" 
 								Style="{StaticResource ActionButtonStyle}" />
 
-						<CheckBox x:Name="PlaidCheckBox"
+                        <CheckBox x:Name="PlaidCheckBox"
 								  Content="Плед"
 								  Margin="10,0,0,0"
 								  Grid.Row="6"
 								  Visibility="Hidden"
 								  VerticalContentAlignment="Center" />
-						<Button x:Name="MusicButton"
+                        <Button x:Name="MusicButton"
 								Content="Музыка"
 								Grid.Column="1"
 								Grid.Row="5"
 								IsEnabled="False"
 								Click="MusicClick"
 								Style="{StaticResource ActionButtonStyle}" />
-						<CheckBox x:Name="HeadphonesCheckBox" Content="Наушники"
+                        <CheckBox x:Name="HeadphonesCheckBox" Content="Наушники"
 								  Margin="10,0,0,0"
 								  Grid.Row="6"
 								  Grid.Column="1"
@@ -405,25 +337,25 @@
 								  VerticalContentAlignment="Center"
 								  Click="ChangeMusicState" />
 
-					</Grid>
-					<Grid Grid.Column="2">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="1*" />
-							<RowDefinition Height="70" />
-						</Grid.RowDefinitions>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="70" />
+                        </Grid.RowDefinitions>
 
-						<ProgressBar x:Name="LevelBar" 
+                        <ProgressBar x:Name="LevelBar" 
 									 Value="0"
 									 Margin="10"
 									 Orientation="Vertical" />
-						<Label x:Name="CurrentLevelLabel"
+                        <Label x:Name="CurrentLevelLabel"
 							   Grid.Row="1"
 							   Content="1"
 							   VerticalContentAlignment="Center"
 							   HorizontalContentAlignment="Center" />
-					</Grid>
-				</Grid>
-			</TabItem>
-		</TabControl>
-	</Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </UserControl>

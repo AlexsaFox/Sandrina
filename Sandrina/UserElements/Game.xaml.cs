@@ -712,58 +712,228 @@ namespace Sandrina.UserElements {
         #endregion
 
         #region Описание смены одежды (закомментировано)
-        //private void Get_dressed_Click(object sender, RoutedEventArgs e) {
-        //    if (Polly.IsChecked == true) {
-        //        CostumePolly.Visibility = Visibility.Visible;
-        //    }
-        //    if (Polly.IsChecked == false) {
-        //        CostumePolly.Visibility = Visibility.Hidden;
-        //    }
-        //    if (Alex.IsChecked == true) {
-        //        AlexCostume.Visibility = Visibility.Visible;
-        //    }
-        //    if (Alex.IsChecked == false) {
-        //        AlexCostume.Visibility = Visibility.Hidden;
-        //    }
-        //    if (Polly.IsChecked == true || Alex.IsChecked == true) {
-        //        Main.IsEnabled = true;
-        //    }
-        //}
+        //Меню
+        private void Hair_Checked(object sender, RoutedEventArgs e)
+        {
+            GridWithHair.Visibility = Visibility.Visible; 
+        }
 
-        //private void Pets_Checked(object sender, RoutedEventArgs e) {
-        //    Cat.IsEnabled = true;
-        //    Dog.IsEnabled = true;
-        //}
+        private void Hair_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GridWithHair.Visibility = Visibility.Hidden;
+        }
 
-        //private void Pets_Unchecked(object sender, RoutedEventArgs e) {
-        //    Cat.IsEnabled = false;
-        //    Dog.IsEnabled = false;
-        //    CatImage.Visibility = Visibility.Hidden;
-        //    DogImage.Visibility = Visibility.Hidden;
-        //    Cat.IsChecked = false;
-        //    Dog.IsChecked = false;
-        //}
+        private void dress_up_Checked(object sender, RoutedEventArgs e)
+        {
+            GridWithClothes.Visibility = Visibility.Visible;
+        }
 
-        //private void Cat_Checked(object sender, RoutedEventArgs e) { CatImage.Visibility = Visibility.Visible; }
-        //private void Cat_Unchecked(object sender, RoutedEventArgs e) { CatImage.Visibility = Visibility.Hidden; }
-        //private void Dog_Checked(object sender, RoutedEventArgs e) { DogImage.Visibility = Visibility.Visible; }
-        //private void Dog_Unchecked(object sender, RoutedEventArgs e) { DogImage.Visibility = Visibility.Hidden; }
+        private void dress_up_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GridWithClothes.Visibility = Visibility.Hidden;
+        }
 
-        //private void Polly_Checked(object sender, RoutedEventArgs e) {
-        //    Image Photo = new Image();
-        //    Photo.Height = 100;
-        //    Photo.Width = 80;
-        //    // TODO: Photo.Source = new BitmapImage(new Uri("D:\\МШП\\Проекты\\По шарпу\\Картинки\\Фон Одежда Полины.jpeg"));
-        //    Box.Items.Add(Photo);
-        //}
 
-        //private void Alex_Checked(object sender, RoutedEventArgs e) {
-        //    Image Photo1 = new Image();
-        //    Photo1.Height = 100;
-        //    Photo1.Width = 80;
-        //    // TODO: Photo1.Source = new BitmapImage(new Uri("D:\\МШП\\Проекты\\По шарпу\\Картинки\\Фон Одежда Саши.jpeg"));
-        //    Box.Items.Add(Photo1);
-        //}
+
+
+        //Одежда
+        bool checkcostume1 = true;
+		private void Costume1_Click(object sender, RoutedEventArgs e)
+		{
+			if (checkcostume1 == true)
+			{
+				CostumePolly.Visibility = Visibility.Visible;
+				AlexCostume.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                checkcostume1 = false;
+				checkcostume2 = true;
+                checkcostume3 = true;
+                checkcostume4 = true;
+            }
+			else
+			{
+				CostumePolly.Visibility = Visibility.Hidden;
+				AlexCostume.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Visible;
+				checkcostume1 = true;
+			}
+		
+		}
+		bool checkcostume2 = true;
+		private void Costume2_Click(object sender, RoutedEventArgs e)
+		{
+			if (checkcostume2 == true)
+			{
+				AlexCostume.Visibility = Visibility.Visible;
+				CostumePolly.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                checkcostume2 = false;
+				checkcostume1 = true;
+                checkcostume3 = true;
+                checkcostume4 = true;
+
+            }
+			else
+			{
+				AlexCostume.Visibility = Visibility.Hidden;
+				CostumePolly.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Visible;
+				checkcostume2 = true;
+			}
+		}
+        bool checkcostume3 = true;
+        private void Costume3_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkcostume3 == true)
+            {
+                AlexCostume.Visibility = Visibility.Hidden;
+                CostumePolly.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Visible;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                checkcostume3 = false;
+                checkcostume1 = true;
+                checkcostume2 = true;
+                checkcostume4 = true;
+            }
+            else
+            {
+                AlexCostume.Visibility = Visibility.Hidden;
+                CostumePolly.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Visible;
+                checkcostume3 = true;
+            }
+        }
+        bool checkcostume4 = true;
+        private void Costume4_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkcostume4 == true)
+            {
+                AlexCostume.Visibility = Visibility.Hidden;
+                CostumePolly.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Visible;
+                checkcostume4 = false;
+                checkcostume1 = true;
+                checkcostume2 = true;
+                checkcostume3 = true;
+            }
+            else
+            {
+                AlexCostume.Visibility = Visibility.Hidden;
+                CostumePolly.Visibility = Visibility.Hidden;
+                FirstExtraClothes.Visibility = Visibility.Hidden;
+                SecondExtraClothes.Visibility = Visibility.Hidden;
+                DefoltWithoutHair.Visibility = Visibility.Visible;
+                checkcostume4 = true;
+            }
+        }
+
+
+
+
+        //Волосы
+        private void HairStyle1_Checked(object sender, RoutedEventArgs e)
+        {
+            if (HairColor1.IsChecked == true)
+            {
+                Style1Color1.Visibility = Visibility.Visible;
+            }
+            else if (HairColor2.IsChecked == true)
+            {
+                Style1Color2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Style1Color1.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HairStyle1_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Style1Color1.Visibility = Visibility.Hidden;
+            Style1Color2.Visibility = Visibility.Hidden;
+        }
+        private void HairStyle2_Checked(object sender, RoutedEventArgs e)
+        {
+            if (HairColor1.IsChecked == true)
+            {
+                Style2Color1.Visibility = Visibility.Visible;
+            }
+            else if (HairColor2.IsChecked == true)
+            {
+                Style2Color2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Style2Color1.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HairStyle2_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Style2Color1.Visibility = Visibility.Hidden;
+            Style2Color2.Visibility = Visibility.Hidden;
+        }
+        private void HairColor1_Checked(object sender, RoutedEventArgs e)
+        {
+            if (HairStyle1.IsChecked == true)
+            {
+                Style1Color1.Visibility = Visibility.Visible;
+            }
+            else if (HairStyle2.IsChecked == true)
+            {
+                Style2Color1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Style1Color1.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HairColor1_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Style1Color1.Visibility = Visibility.Hidden;
+            Style2Color1.Visibility = Visibility.Hidden;
+        }
+
+        private void HairColor2_Checked(object sender, RoutedEventArgs e)
+        {
+            if (HairStyle1.IsChecked == true)
+            {
+                Style1Color2.Visibility = Visibility.Visible;
+            }
+            else if (HairStyle2.IsChecked == true)
+            {
+                Style2Color2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Style1Color2.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HairColor2_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Style1Color2.Visibility = Visibility.Hidden;
+            Style2Color2.Visibility = Visibility.Hidden;
+        }
+
+
+
         #endregion
+
+        
     }
 }

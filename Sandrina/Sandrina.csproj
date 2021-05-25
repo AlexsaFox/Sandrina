@@ -155,5 +155,47 @@
   <ItemGroup>
     <Resource Include="Images\Icons\lock.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Polina Clothes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sasha Clothes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Polinas Clothes %28Default%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Sasha Clothes %28default%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Hair 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Hair 1 Color 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Hair 2 Color1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Hair 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina_Origin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\First Outfit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Second Outfit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina First Outfit Clothes %28Default%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserElements\Sandrina Second Outfit Clothes %28Default%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -712,27 +712,40 @@ namespace Sandrina.UserElements {
 
         #region Описание смены одежды (закомментировано)
         //Меню
-        private void Hair_Checked(object sender, RoutedEventArgs e)
+        bool menucheck1 = true;
+        private void Hair_Click(object sender, RoutedEventArgs e)
         {
-            GridWithHair.Visibility = Visibility.Visible; 
+            if (menucheck1 == true)
+            {
+                GridWithHair.Visibility = Visibility.Visible;
+                GridWithClothes.Visibility = Visibility.Hidden;
+                menucheck2 = true;
+                menucheck1 = false;
+            }
+            else
+            {
+                GridWithHair.Visibility = Visibility.Hidden;
+                GridWithClothes.Visibility = Visibility.Hidden;
+                menucheck1 = true;
+            }
         }
-
-        private void Hair_Unchecked(object sender, RoutedEventArgs e)
+        bool menucheck2 = true;
+        private void dress_up_Click(object sender, RoutedEventArgs e)
         {
-            GridWithHair.Visibility = Visibility.Hidden;
+            if (menucheck2 == true)
+            {
+                GridWithHair.Visibility = Visibility.Hidden;
+                GridWithClothes.Visibility = Visibility.Visible;
+                menucheck1 = true;
+                menucheck2 = false;
+            }
+            else
+            {
+                GridWithHair.Visibility = Visibility.Hidden;
+                GridWithClothes.Visibility = Visibility.Hidden;
+                menucheck2 = true;
+            }
         }
-
-        private void dress_up_Checked(object sender, RoutedEventArgs e)
-        {
-            GridWithClothes.Visibility = Visibility.Visible;
-        }
-
-        private void dress_up_Unchecked(object sender, RoutedEventArgs e)
-        {
-            GridWithClothes.Visibility = Visibility.Hidden;
-        }
-
-
 
 
         //Одежда
@@ -931,8 +944,9 @@ namespace Sandrina.UserElements {
 
 
 
+
         #endregion
 
-        
+      
     }
 }

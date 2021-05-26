@@ -77,9 +77,9 @@
 
 
                     <Menu HorizontalAlignment="Left" Height="58" Margin="520,29,0,0" VerticalAlignment="Top" Width="181" Background="#FFF19C85">
-                        <MenuItem Header="Внешний вид" Height="58" Width="181" FontSize="33" Background="#FFF19C85" FontFamily="Gabriola" >
-                            <RadioButton x:Name="Hair" Content="Волосы" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="Hair_Checked" Unchecked="Hair_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
-                            <RadioButton x:Name="dress_up" Content="Гардероб" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="dress_up_Checked" Unchecked="dress_up_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
+                        <MenuItem Header="Внешний вид" Height="58" Width="181" FontSize="35" Background="#FFF19C85" FontFamily="Gabriola" >
+                            <Button x:Name="Hair" BorderBrush="#FF9C5D4D" Background="#FFF19C85" Content="Волосы" FontSize="20" Height="30" Width="110" Click="Hair_Click"/>
+                            <Button x:Name="dress_up" BorderBrush="#FF9C5D4D" Background="#FFF19C85" Content="Гардероб" FontSize="20" Height="28" Width="110" Click="dress_up_Click"/>
                         </MenuItem>
                     </Menu>
                     <Grid x:Name="GridWithClothes" HorizontalAlignment="Left" Height="286" Margin="464,173,0,0" VerticalAlignment="Top" Width="280" Background="#FFD7AE87" Visibility="Hidden">

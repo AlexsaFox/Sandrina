@@ -890,6 +890,7 @@ namespace Sandrina.UserElements {
             else
             {
                 Style2Color1.Visibility = Visibility.Visible;
+                Style1Color1.Visibility = Visibility.Hidden;
             }
         }
 

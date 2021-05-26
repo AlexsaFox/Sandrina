@@ -77,7 +77,7 @@
 
 
                     <Menu HorizontalAlignment="Left" Height="58" Margin="520,29,0,0" VerticalAlignment="Top" Width="181" Background="#FFF19C85">
-                        <MenuItem Header="Внешний вид" Height="58" Width="181" FontSize="35" Background="#FFF19C85" FontFamily="Gabriola" >
+                        <MenuItem Header="Внешний вид" Height="58" Width="181" FontSize="33" Background="#FFF19C85" FontFamily="Gabriola" >
                             <RadioButton x:Name="Hair" Content="Волосы" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="Hair_Checked" Unchecked="Hair_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
                             <RadioButton x:Name="dress_up" Content="Гардероб" GroupName="Menu" Height="28" Width="110" FontSize="20" Checked="dress_up_Checked" Unchecked="dress_up_Unchecked" BorderBrush="#FFF19C85" Background="White"/>
                         </MenuItem>

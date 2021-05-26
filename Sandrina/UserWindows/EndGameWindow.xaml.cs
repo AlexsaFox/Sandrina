@@ -54,7 +54,7 @@ namespace Sandrina.UserElements {
         #endregion
 
         #region Сохранение/Загрузка
-        void MakeSureFileExists(string PathToFile) {
+        bool MakeSureFileExists(string PathToFile) {
             if(!new FileInfo(PathToFile).Exists) {
                 string CorrectPath = Environment.GetEnvironmentVariable("USERPROFILE"); // Getting user home directory
                 List<string> NextDirectories = PathToFile.Replace(CorrectPath, "").Split('\\').Select(s => @"\" + s).ToList<string>();
@@ -68,8 +68,13 @@ namespace Sandrina.UserElements {
                 }
                 
                 FileInfo File = new FileInfo(CorrectPath + FileName);
-                if(!File.Exists) File.Create();
+                if(!File.Exists) {
+                    using (var CreatedFile = File.Create()) {
+                        CreatedFile.Close();
+                    }
+                }
             }
+            return true;
         }
 
         string ReadFromFile(string PathToFile) {
@@ -90,15 +95,18 @@ namespace Sandrina.UserElements {
         string Decrypt(string s) { return s; }
 
         void LoadLeaderBoardFromFile() {
-            MakeSureFileExists(FullPathToFile);
-            string SavedContent = ReadFromFile(FullPathToFile);
+            bool isFileCreated = MakeSureFileExists(FullPathToFile);
+            string SavedContent = "";
+            if(isFileCreated) SavedContent = ReadFromFile(FullPathToFile);
             
             Saves = new List<UserData>();
             foreach (string Line in SavedContent.Split('\n')) {
-                Saves.Add(new UserData());
-                List<string> Splitted = Line.Split(' ').ToList();
-                Saves[Saves.Count - 1].Name  = string.Join(" ", Splitted.Take(Splitted.Count - 1));
-                Saves[Saves.Count - 1].Score = Convert.ToInt32(Splitted.Skip(Splitted.Count - 1).ToList()[0]);
+                if(!string.IsNullOrEmpty(Line)) { 
+                    Saves.Add(new UserData());
+                    List<string> Splitted = Line.Split(' ').ToList();
+                    Saves[Saves.Count - 1].Name  = string.Join(" ", Splitted.Take(Splitted.Count - 1));
+                    Saves[Saves.Count - 1].Score = Convert.ToInt32(Splitted.Skip(Splitted.Count - 1).ToList()[0]);
+                }
             }
         }
         public void SaveLeaderBoardToFile(object sender, System.ComponentModel.CancelEventArgs e) {

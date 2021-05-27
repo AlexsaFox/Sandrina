@@ -131,21 +131,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\DefaultSandrinaInSashaClothes.png" />
-    <Resource Include="Images\DefaultSandrinaInPolinaClothes.png" />
-    <Resource Include="Images\Catto.png" />
-    <Resource Include="Images\DefaultSandrina.png" />
     <Resource Include="Images\Left.png" />
     <Resource Include="Images\Right.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Doggo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Temporary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\SUPER-DUPER-MEGA-CUSTOM-ULTRA-NANO-MEGA-OMEGA-AWESOME-HIGH-QUALITY-ULTRA-HD-SUIT.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\dontsave.png" />
@@ -156,46 +146,60 @@
     <Resource Include="Images\Icons\lock.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Polina Clothes.png" />
+    <Resource Include="Images\Outfits\WithoutSapo\PolinaOutfit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sasha Clothes.png" />
+    <Resource Include="Images\Outfits\WithoutSapo\SashaOutfit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina .png" />
+    <Resource Include="Images\Hair\SandrinaBunBlondeHair.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Polinas Clothes %28Default%29.png" />
+    <Resource Include="Images\Hair\SandrinaLooseLightHair.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Sasha Clothes %28default%29.png" />
+    <Resource Include="Images\Hair\SandrinaBunLightHair.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Hair 1.png" />
+    <Resource Include="Images\Hair\SandrinaLooseBlondeHair.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Hair 1 Color 1.png" />
+    <Resource Include="Images\Outfits\WithSapo\SandrinaDefault.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Hair 2 Color1.png" />
+    <Resource Include="Images\Outfits\WithoutSapo\FirstExtraOutfit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Hair 2.png" />
+    <Resource Include="Images\Outfits\WithoutSapo\SecondExtraOutfit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina_Origin.png" />
+    <Resource Include="Images\Outfits\WithSapo\SecondExtraOutfitStates\Happy.png" />
+    <Resource Include="Images\Outfits\WithSapo\SecondExtraOutfitStates\Normal.png" />
+    <Resource Include="Images\Outfits\WithSapo\SecondExtraOutfitStates\Sad.png" />
+    <Resource Include="Images\Outfits\WithSapo\SecondExtraOutfitStates\VeryHappy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\First Outfit.png" />
+    <Resource Include="Images\Outfits\WithSapo\SashaOutfitStates\Happy.png" />
+    <Resource Include="Images\Outfits\WithSapo\SashaOutfitStates\Normal.png" />
+    <Resource Include="Images\Outfits\WithSapo\SashaOutfitStates\Sad.png" />
+    <Resource Include="Images\Outfits\WithSapo\SashaOutfitStates\VeryHappy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Second Outfit.png" />
+    <Resource Include="Images\Outfits\WithSapo\PolinaOutfitStates\Happy.png" />
+    <Resource Include="Images\Outfits\WithSapo\PolinaOutfitStates\Normal.png" />
+    <Resource Include="Images\Outfits\WithSapo\PolinaOutfitStates\Sad.png" />
+    <Resource Include="Images\Outfits\WithSapo\PolinaOutfitStates\VeryHappy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina First Outfit Clothes %28Default%29.png" />
+    <Resource Include="Images\Outfits\WithSapo\FirstExtraOutfitStates\Happy.png" />
+    <Resource Include="Images\Outfits\WithSapo\FirstExtraOutfitStates\Normal.png" />
+    <Resource Include="Images\Outfits\WithSapo\FirstExtraOutfitStates\Sad.png" />
+    <Resource Include="Images\Outfits\WithSapo\FirstExtraOutfitStates\VeryHappy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="UserElements\Sandrina Second Outfit Clothes %28Default%29.png" />
+    <Resource Include="Images\Accessories\Headphones.png" />
+    <Resource Include="Images\Accessories\PlaidBackground.png" />
+    <Resource Include="Images\Accessories\PlaidForeground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,14 +7,12 @@
 			 mc:Ignorable="d" >
 
 	<UserControl.Resources>
-		<SolidColorBrush x:Key="MyFontColor"
-						 Color="#FF3E2A35" />
-		<SolidColorBrush x:Key="MyPeach"
-						 Color="#FFFFCAAF " />
-		<SolidColorBrush x:Key="MyDarkPeach"
-						 Color="#FFF19C85" />
-		<SolidColorBrush x:Key="MyFontColor2"
-						 Color="#FF673B3F" />
+		<SolidColorBrush x:Key="MyFontColor" Color="#FF3E2A35" />
+		<SolidColorBrush x:Key="MyPeach" Color="#FFFFCAAF " />
+		<SolidColorBrush x:Key="MyDarkPeach" Color="#FFF19C85" />
+		<SolidColorBrush x:Key="MyDarkLighterPeach" Color="#f4af9c" />
+		<SolidColorBrush x:Key="MyDarkLightestPeach" Color="#f6c1b3" />
+		<SolidColorBrush x:Key="MyFontColor2" Color="#FF673B3F" />
 	</UserControl.Resources>
 
 	<Grid x:Name="Instruction"
@@ -37,13 +35,26 @@
 			   Grid.ColumnSpan="2"
 			   VerticalContentAlignment="Center"
 			   HorizontalContentAlignment="Center" />
-		<TextBlock x:Name="Description"
-			   Padding="10"
-			   Text=" Приветствуем тебя, дорогой игрок! &#xD;&#xA;Предлагаем тебе прожить один день из жизни обычной девушки подростка СаПо. &#xD;&#xA;Но не просто прожить, а выжить 😈 &#xD;&#xA;Для того чтобы не умереть, ты должен поддерживать жизненные показатели &#xD;&#xA;героини.&#xD;&#xA;Сладости и кофе помогут тебе поддержать XP, &#xD;&#xA;а сериалы, фанфики и музыка не дадут тебе умереть от горя и скуки.&#xD;&#xA;Как и в обычной жизни температура воздуха не всегда постоянна, &#xD;&#xA;поэтому когда показатель тепла станет синим, не забудь накинуть плед, &#xD;&#xA;а то от холода и умереть можно 😉&#xD;&#xA;Но сначала ты должен выбрать, как ты будешь выглядеть…&#xD;&#xA;"
-			   FontSize="20"
-			   Foreground="{DynamicResource MyFontColor2}"
-			   Grid.Row="1"
-			   Grid.ColumnSpan="2" />
+		<ScrollViewer Grid.Row="1"
+					  Grid.ColumnSpan="2" 
+					  VerticalScrollBarVisibility="Auto"
+					  HorizontalScrollBarVisibility="Disabled">
+			<TextBlock x:Name="Description"
+					   Padding="10"
+					   Text="Приветствуем тебя, дорогой игрок!
+				   		&#xD;&#xA;Предлагаем тебе прожить один день из жизни обычной девушки подростка СаПо. 
+				   		&#xD;&#xA;Но не просто прожить, а выжить 😈 
+				   		&#xD;&#xA;Для того чтобы не умереть, ты должен поддерживать жизненные показатели героини.
+				   		&#xD;&#xA;Сладости и кофе помогут тебе поддержать XP, 
+				   		&#xD;&#xA;а сериалы, фанфики и музыка не дадут тебе умереть от горя и скуки.
+				   		&#xD;&#xA;Как и в обычной жизни температура воздуха не всегда постоянна, 
+				   		&#xD;&#xA;поэтому когда показатель тепла станет синим, не забудь накинуть плед,
+				   		&#xD;&#xA;а то от холода и умереть можно 😉
+				   		&#xD;&#xA;Но сначала ты должен выбрать, как ты будешь выглядеть…"
+					   TextWrapping="Wrap"
+					   FontSize="20"
+					   Foreground="{DynamicResource MyFontColor2}"/>
+		</ScrollViewer>
 		<Button Content="Продолжить"
 				Margin="10"
 				Click="GotoGame"
@@ -52,6 +63,43 @@
 				Foreground="{DynamicResource MyFontColor}"
 				Background="{DynamicResource MyDarkPeach}"
 				Grid.Row="2"
-				Grid.Column="1" />
+				Grid.Column="1" >
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border x:Name="border"
+							CornerRadius="15"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							Background="{TemplateBinding Background}"
+							SnapsToDevicePixels="true">
+						<ContentPresenter x:Name="contentPresenter"
+										  Focusable="False"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  Margin="{TemplateBinding Padding}"
+										  RecognizesAccessKey="True"
+										  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver"
+								 Value="True">
+							<Setter TargetName="border"
+									Property="Background"
+									Value="{StaticResource MyDarkLighterPeach}" />
+							<Setter Property="Cursor"
+									Value="Hand" />
+						</Trigger>
+						<Trigger Property="IsPressed"
+								 Value="True">
+							<Setter TargetName="border"
+									Property="Background"
+									Value="{StaticResource MyDarkLightestPeach}" />
+							<Setter Property="Cursor"
+									Value="Hand" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
 	</Grid>
 </UserControl>

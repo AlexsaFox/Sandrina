@@ -258,6 +258,7 @@ namespace Sandrina.UserElements {
             ChangeStats();
             GameTicksAlive++;
             ChangeLevelBarState();
+            ChangeGameScreenOutfit();
 
             if(HpBar.Value == 0) {
                 OverGame();
@@ -404,10 +405,10 @@ namespace Sandrina.UserElements {
         }
 
         void UpdateStats(Dictionary<BarType, double> ChangeStats) {
-            if (ChangeStats[BarType.Hp]            != 0 && HpBar           .IsVisible) AnimateBarLength(HpBar,            (ChangeStats[BarType.Hp]            > 0 ? ChangeStats[BarType.Hp]            * EnergyBooster : ChangeStats[BarType.Hp]           ),            OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Fun]           != 0 && FunBar          .IsVisible) AnimateBarLength(FunBar,           (ChangeStats[BarType.Fun]           > 0 ? ChangeStats[BarType.Fun]           * EnergyBooster : ChangeStats[BarType.Fun]          ),           OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Temperature]   != 0 && TemperatureBar  .IsVisible) AnimateBarLength(TemperatureBar,   (ChangeStats[BarType.Temperature]   > 0 ? ChangeStats[BarType.Temperature]   * EnergyBooster : ChangeStats[BarType.Temperature]  ),   OneTimeIncreaseLength);
-            if (ChangeStats[BarType.Energy]        != 0 && EnergyBar       .IsVisible) AnimateBarLength(EnergyBar,        (ChangeStats[BarType.Energy]        > 0 ? ChangeStats[BarType.Energy]        * EnergyBooster : ChangeStats[BarType.Energy]       ),        OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Hp]            != 0 && HpBar           .IsVisible) AnimateBarLength(HpBar,            (ChangeStats[BarType.Hp]            > 0 ? ChangeStats[BarType.Hp]            * EnergyBooster : ChangeStats[BarType.Hp]           ), OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Fun]           != 0 && FunBar          .IsVisible) AnimateBarLength(FunBar,           (ChangeStats[BarType.Fun]           > 0 ? ChangeStats[BarType.Fun]           * EnergyBooster : ChangeStats[BarType.Fun]          ), OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Temperature]   != 0 && TemperatureBar  .IsVisible) AnimateBarLength(TemperatureBar,   (ChangeStats[BarType.Temperature]   > 0 ? ChangeStats[BarType.Temperature]   * EnergyBooster : ChangeStats[BarType.Temperature]  ), OneTimeIncreaseLength);
+            if (ChangeStats[BarType.Energy]        != 0 && EnergyBar       .IsVisible) AnimateBarLength(EnergyBar,         ChangeStats[BarType.Energy],                                                                                                       OneTimeIncreaseLength);
             if (ChangeStats[BarType.Socialization] != 0 && SocializationBar.IsVisible) AnimateBarLength(SocializationBar, (ChangeStats[BarType.Socialization] > 0 ? ChangeStats[BarType.Socialization] * EnergyBooster : ChangeStats[BarType.Socialization]), OneTimeIncreaseLength);
         }
 
@@ -562,12 +563,11 @@ namespace Sandrina.UserElements {
                 if ((sender as CheckBox).IsChecked == true) MusicButton.IsEnabled = true;
                 else MusicButton.IsEnabled = false;
             }
+
+            ChangeMusicVisibility();
         }
-        #endregion
-
-        #region Одежда (???)
-        enum OutfitType {
-
+        private void ChangePlaidState(object sender, RoutedEventArgs e) {
+            ChangePlaidVisibility();
         }
         #endregion
 
@@ -578,15 +578,13 @@ namespace Sandrina.UserElements {
         }
         class AddItemsLevel : Level {
             public List<UIElement> NewUIElements { get; set; }
-            public List<OutfitType> RewardOutfit { get; set; }
 
-            public AddItemsLevel(List<UIElement> NewUIElements, List<OutfitType> RewardOutfit, Color BarColor, long TimeLengthInGameTicks) {
+            public AddItemsLevel(List<UIElement> NewUIElements, Color BarColor, long TimeLengthInGameTicks) {
                 this.NewUIElements = NewUIElements;
-                this.RewardOutfit = RewardOutfit;
                 this.BarColor = BarColor;
                 this.TimeLengthInGameTicks = TimeLengthInGameTicks;
             }
-            public AddItemsLevel() : this(new List<UIElement>(), new List<OutfitType>(), Colors.White, 1) { }
+            public AddItemsLevel() : this(new List<UIElement>(), Colors.White, 1) { }
         }
         class IncreaseDifficultyLevel : Level {
             public Dictionary<BarType, double> NewBarSpeed { get; set; }
@@ -616,7 +614,6 @@ namespace Sandrina.UserElements {
                         MusicButton,
                         HeadphonesCheckBox
                     },
-                    new List<OutfitType> { },
                     GetColor.Green,
                     20
                 ),
@@ -628,7 +625,6 @@ namespace Sandrina.UserElements {
                         IceCreamButton,
                         PlaidCheckBox
                     },
-                    new List<OutfitType> { },
                     GetColor.Green,
                     30
                 ),
@@ -639,7 +635,6 @@ namespace Sandrina.UserElements {
                         SleepButton,
                         DanceButton
                     },
-                    new List<OutfitType> { },
                     GetColor.Green,
                     60
                 ),
@@ -650,7 +645,6 @@ namespace Sandrina.UserElements {
                         SocialMediaButton,
                         WalkButton
                     },
-                    new List<OutfitType> { },
                     GetColor.Green,
                     90
                 ),
@@ -709,245 +703,165 @@ namespace Sandrina.UserElements {
             AnimateBarLength(LevelBar, 0, 100 * 1d/CurrentLevel.TimeLengthInGameTicks, GameTickLegth);
         }
         #endregion
-
-        #region Описание смены одежды (закомментировано)
-        //Меню
-        bool menucheck1 = true;
-        private void Hair_Click(object sender, RoutedEventArgs e)
-        {
-            if (menucheck1 == true)
-            {
-                GridWithHair.Visibility = Visibility.Visible;
-                GridWithClothes.Visibility = Visibility.Hidden;
-                menucheck2 = true;
-                menucheck1 = false;
-            }
-            else
-            {
-                GridWithHair.Visibility = Visibility.Hidden;
-                GridWithClothes.Visibility = Visibility.Hidden;
-                menucheck1 = true;
-            }
-        }
-        bool menucheck2 = true;
-        private void dress_up_Click(object sender, RoutedEventArgs e)
-        {
-            if (menucheck2 == true)
-            {
-                GridWithHair.Visibility = Visibility.Hidden;
-                GridWithClothes.Visibility = Visibility.Visible;
-                menucheck1 = true;
-                menucheck2 = false;
-            }
-            else
-            {
-                GridWithHair.Visibility = Visibility.Hidden;
-                GridWithClothes.Visibility = Visibility.Hidden;
-                menucheck2 = true;
-            }
+        
+        #region Смена изображения на вкладке игры
+        void ChangeGameScreenHairStyle() {
+            if(LooseHairRB.IsChecked == true && LightHairRB .IsChecked == true) SandrinaHairImage.Source = new BitmapImage(new Uri(@"/Images/Hair/SandrinaLooseLightHair.png" , UriKind.Relative));
+            if(LooseHairRB.IsChecked == true && BlondeHairRB.IsChecked == true) SandrinaHairImage.Source = new BitmapImage(new Uri(@"/Images/Hair/SandrinaLooseBlondeHair.png", UriKind.Relative));
+            if(BunHairRB  .IsChecked == true && LightHairRB .IsChecked == true) SandrinaHairImage.Source = new BitmapImage(new Uri(@"/Images/Hair/SandrinaBunLightHair.png"   , UriKind.Relative));
+            if(BunHairRB  .IsChecked == true && BlondeHairRB.IsChecked == true) SandrinaHairImage.Source = new BitmapImage(new Uri(@"/Images/Hair/SandrinaBunBlondeHair.png"  , UriKind.Relative));
         }
 
+        void ChangeGameScreenOutfit() {
+            string OutfitFolderName = "";
+            string StateFileName    = "";
 
-        //Одежда
-        bool checkcostume1 = true;
-		private void Costume1_Click(object sender, RoutedEventArgs e)
-		{
-			if (checkcostume1 == true)
-			{
-				CostumePolly.Visibility = Visibility.Visible;
-				AlexCostume.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                checkcostume1 = false;
-				checkcostume2 = true;
-                checkcostume3 = true;
-                checkcostume4 = true;
+            switch(GetSelectedOutitType()) {
+                case Outfit.Polina:
+                    OutfitFolderName = "PolinaOutfitStates";
+                    break;
+                    
+                case Outfit.Sasha:
+                    OutfitFolderName = "SashaOutfitStates";
+                    break;
+                    
+                case Outfit.FirstExtra:
+                    OutfitFolderName = "FirstExtraOutfitStates";
+                    break;
+                    
+                case Outfit.SecondExtra:
+                    OutfitFolderName = "SecondExtraOutfitStates";
+                    break;
             }
-			else
-			{
-				CostumePolly.Visibility = Visibility.Hidden;
-				AlexCostume.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Visible;
-				checkcostume1 = true;
-			}
-		
-		}
-		bool checkcostume2 = true;
-		private void Costume2_Click(object sender, RoutedEventArgs e)
-		{
-			if (checkcostume2 == true)
-			{
-				AlexCostume.Visibility = Visibility.Visible;
-				CostumePolly.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                checkcostume2 = false;
-				checkcostume1 = true;
-                checkcostume3 = true;
-                checkcostume4 = true;
 
+            switch(HpBar.Value) {
+                case double db when 75 <= db && db <= 100:
+                    StateFileName = "VeryHappy";
+                    break;
+                    
+                case double db when 50 <= db && db < 75:
+                    StateFileName = "Happy";
+                    break;
+                    
+                case double db when 25 <= db && db < 50:
+                    StateFileName = "Normal";
+                    break;
+                    
+                case double db when 0 <= db && db < 25:
+                    StateFileName = "Sad";
+                    break;
             }
-			else
-			{
-				AlexCostume.Visibility = Visibility.Hidden;
-				CostumePolly.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Visible;
-				checkcostume2 = true;
-			}
-		}
-        bool checkcostume3 = true;
-        private void Costume3_Click(object sender, RoutedEventArgs e)
-        {
-            if (checkcostume3 == true)
-            {
-                AlexCostume.Visibility = Visibility.Hidden;
-                CostumePolly.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Visible;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                checkcostume3 = false;
-                checkcostume1 = true;
-                checkcostume2 = true;
-                checkcostume4 = true;
-            }
-            else
-            {
-                AlexCostume.Visibility = Visibility.Hidden;
-                CostumePolly.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Visible;
-                checkcostume3 = true;
-            }
-        }
-        bool checkcostume4 = true;
-        private void Costume4_Click(object sender, RoutedEventArgs e)
-        {
-            if (checkcostume4 == true)
-            {
-                AlexCostume.Visibility = Visibility.Hidden;
-                CostumePolly.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Visible;
-                checkcostume4 = false;
-                checkcostume1 = true;
-                checkcostume2 = true;
-                checkcostume3 = true;
-            }
-            else
-            {
-                AlexCostume.Visibility = Visibility.Hidden;
-                CostumePolly.Visibility = Visibility.Hidden;
-                FirstExtraClothes.Visibility = Visibility.Hidden;
-                SecondExtraClothes.Visibility = Visibility.Hidden;
-                DefoltWithoutHair.Visibility = Visibility.Visible;
-                checkcostume4 = true;
-            }
+            
+            SandrinaStateImage.Source = new BitmapImage(new Uri($@"/Images/Outfits/WithSapo/{OutfitFolderName}/{StateFileName}.png"  , UriKind.Relative));
         }
 
-
-
-
-        //Волосы
-        private void HairStyle1_Checked(object sender, RoutedEventArgs e)
-        {
-            if (HairColor1.IsChecked == true)
-            {
-                Style1Color1.Visibility = Visibility.Visible;
-            }
-            else if (HairColor2.IsChecked == true)
-            {
-                Style1Color2.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Style1Color1.Visibility = Visibility.Visible;
-            }
+        void ChangeMusicVisibility() {
+            if(HeadphonesCheckBox.IsChecked == true) SanrdinaHeadphonesImage.Visibility = Visibility.Visible;
+            else                                     SanrdinaHeadphonesImage.Visibility = Visibility.Hidden;
         }
 
-        private void HairStyle1_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Style1Color1.Visibility = Visibility.Hidden;
-            Style1Color2.Visibility = Visibility.Hidden;
-        }
-        private void HairStyle2_Checked(object sender, RoutedEventArgs e)
-        {
-            if (HairColor1.IsChecked == true)
-            {
-                Style2Color1.Visibility = Visibility.Visible;
+        void ChangePlaidVisibility() {
+            if(PlaidCheckBox.IsChecked == true) {
+                SanrdinaPlaidForegroundImage.Visibility = Visibility.Visible;
+                SanrdinaPlaidBackgroundImage.Visibility = Visibility.Visible;
             }
-            else if (HairColor2.IsChecked == true)
-            {
-                Style2Color2.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Style2Color1.Visibility = Visibility.Visible;
-                Style1Color1.Visibility = Visibility.Hidden;
+            else {
+                SanrdinaPlaidForegroundImage.Visibility = Visibility.Hidden;
+                SanrdinaPlaidBackgroundImage.Visibility = Visibility.Hidden;
             }
         }
-
-        private void HairStyle2_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Style2Color1.Visibility = Visibility.Hidden;
-            Style2Color2.Visibility = Visibility.Hidden;
-        }
-        private void HairColor1_Checked(object sender, RoutedEventArgs e)
-        {
-            if (HairStyle1.IsChecked == true)
-            {
-                Style1Color1.Visibility = Visibility.Visible;
-            }
-            else if (HairStyle2.IsChecked == true)
-            {
-                Style2Color1.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Style1Color1.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void HairColor1_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Style1Color1.Visibility = Visibility.Hidden;
-            Style2Color1.Visibility = Visibility.Hidden;
-        }
-
-        private void HairColor2_Checked(object sender, RoutedEventArgs e)
-        {
-            if (HairStyle1.IsChecked == true)
-            {
-                Style1Color2.Visibility = Visibility.Visible;
-            }
-            else if (HairStyle2.IsChecked == true)
-            {
-                Style2Color2.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Style1Color2.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void HairColor2_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Style1Color2.Visibility = Visibility.Hidden;
-            Style2Color2.Visibility = Visibility.Hidden;
-        }
-
-
-
-
         #endregion
 
-      
+        #region Функционал гардероба
+        enum Outfit { None, Polina, Sasha, FirstExtra, SecondExtra }
+
+        private void HairStyleColorClick(object sender, RoutedEventArgs e) {
+            LooseLightHairImage.Visibility  = Visibility.Hidden;
+            LooseBlondeHairImage.Visibility = Visibility.Hidden;
+            BunLightHairImage.Visibility    = Visibility.Hidden;
+            BunBlondeHairImage.Visibility   = Visibility.Hidden;
+
+            if(LooseHairRB.IsChecked == true && LightHairRB .IsChecked == true) LooseLightHairImage.Visibility  = Visibility.Visible;
+            if(LooseHairRB.IsChecked == true && BlondeHairRB.IsChecked == true) LooseBlondeHairImage.Visibility = Visibility.Visible;
+            if(BunHairRB  .IsChecked == true && LightHairRB .IsChecked == true) BunLightHairImage.Visibility    = Visibility.Visible;
+            if(BunHairRB  .IsChecked == true && BlondeHairRB.IsChecked == true) BunBlondeHairImage.Visibility   = Visibility.Visible;
+
+            ChangeGameScreenHairStyle();
+        }
+
+        Outfit GetSelectedOutitType() {
+            switch(WardrobeListbox.SelectedItem) {
+                case Image Img when Img.Name == "PolinaOutfit":
+                    return Outfit.Polina;
+                    
+                case Image Img when Img.Name == "SashaOutfit":
+                    return Outfit.Sasha;
+                    
+                case Image Img when Img.Name == "FirstExtraOutfit":
+                    return Outfit.FirstExtra;
+                    
+                case Image Img when Img.Name == "SecondExtraOutfit":
+                    return Outfit.SecondExtra;
+
+                default:
+                    return Outfit.None;
+            }
+        }
+
+        private void ChangeOutfit(object sender, SelectionChangedEventArgs e) {
+            SandrinaDefaultOutfit    .Visibility = Visibility.Hidden;
+            SanrdinaPolinaOutfit     .Visibility = Visibility.Hidden;
+            SandrinaSashaOutfit      .Visibility = Visibility.Hidden;
+            SandrinaFirstExtraOutfit .Visibility = Visibility.Hidden;
+            SandrinaSecondExtraOutfit.Visibility = Visibility.Hidden;
+
+            switch(GetSelectedOutitType()) {
+                case Outfit.Polina:
+                    SanrdinaPolinaOutfit.Visibility = Visibility.Visible;
+                    break;
+                    
+                case Outfit.Sasha:
+                    SandrinaSashaOutfit.Visibility = Visibility.Visible;
+                    break;
+                    
+                case Outfit.FirstExtra:
+                    SandrinaFirstExtraOutfit.Visibility = Visibility.Visible;
+                    break;
+                    
+                case Outfit.SecondExtra:
+                    SandrinaSecondExtraOutfit.Visibility = Visibility.Visible;
+                    break;
+            }
+
+            ChangeGameScreenOutfit();
+            EnableGameTab();
+        }
+        void EnableGameTab() {
+            if(!GameTab.IsEnabled) {
+                GameTab.IsEnabled = true;
+                (GameTab.ToolTip as ToolTip).Content = "Следи за показателями!";
+            }
+        }
+
+        private void ChangeGridVisibility(object sender, RoutedEventArgs e) {
+            if((sender as MenuItem).Name == "OutfitGridMenuItem") {
+                if(GridWithHair.IsVisible) {
+                    GridWithOutfits.Visibility = Visibility.Visible;
+                    GridWithHair   .Visibility = Visibility.Hidden;
+                } else {
+                    if(GridWithOutfits.IsVisible) GridWithOutfits.Visibility = Visibility.Hidden;
+                    else                          GridWithOutfits.Visibility = Visibility.Visible;
+                }
+            } else if((sender as MenuItem).Name == "HairGridMenuItem") {
+                if(GridWithOutfits.IsVisible) {
+                    GridWithOutfits.Visibility = Visibility.Hidden;
+                    GridWithHair   .Visibility = Visibility.Visible;
+                } else {
+                    if(GridWithHair.IsVisible) GridWithHair.Visibility = Visibility.Hidden;
+                    else                          GridWithHair.Visibility = Visibility.Visible;
+                }
+            }
+        }
+        #endregion
     }
 }

@@ -652,7 +652,7 @@ namespace Sandrina.UserElements {
 					new Dictionary<BarType, double> {
                         { BarType.Hp,               0 },
                         { BarType.Fun,           -7.5 },
-                        { BarType.Temperature,    0.5 },
+                        { BarType.Temperature,   -0.5 },
                         { BarType.Energy,        -7.5 },
                         { BarType.Socialization, -7.5 }
                     },

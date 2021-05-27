@@ -88,11 +88,9 @@
 				</ControlTemplate>
 			</Button.Template>
 		</Button>
-		<Image Margin="200,10"
-			   Grid.Row="2"
-			   Source="/Sandrina;component/Images/Temporary.png"
-			   Stretch="Fill"
-			   StretchDirection="DownOnly"
+		<Image Grid.Row="2"
+			   Source="/Sandrina;component/Images/SandrinaHeader.png"
+			   Stretch="Uniform"
 			   Grid.ColumnSpan="3"/>
 	</Grid>
 </UserControl>

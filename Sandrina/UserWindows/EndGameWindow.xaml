@@ -11,7 +11,9 @@
 		AllowsTransparency="True"
 		Height="550"
 		Width="800"
-		Closing="SaveLeaderBoardToFile">
+		WindowState="Maximized"
+		Closing="SaveLeaderBoardToFile"
+		Icon="/Sandrina;component/Images/Icon.png">
 
 	<Window.Resources>
 		<SolidColorBrush x:Key="DarkerBlue"

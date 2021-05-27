@@ -135,9 +135,6 @@
     <Resource Include="Images\Right.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Temporary.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Icons\dontsave.png" />
     <Resource Include="Images\Icons\turnoff.png" />
     <Resource Include="Images\Icons\replay.png" />
@@ -200,6 +197,12 @@
     <Resource Include="Images\Accessories\Headphones.png" />
     <Resource Include="Images\Accessories\PlaidBackground.png" />
     <Resource Include="Images\Accessories\PlaidForeground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SandrinaHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
